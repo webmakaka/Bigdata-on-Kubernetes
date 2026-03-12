@@ -22,9 +22,6 @@ This book covers the following exciting features:
 
 ## Chapters:
 
-<ol>
-  <li>📖 Introduction to Microservices</li>
-</ol>
 
 Part 1: Docker and Kubernetes
 

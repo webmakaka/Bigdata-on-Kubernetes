@@ -1,8 +1,6 @@
-# Big Data on Kubernetes
+# [Book][Neylson Crepalde] Big Data on Kubernetes [ENG, 2024]
 
-<a href="https://www.packtpub.com/en-in/product/big-data-on-kubernetes-9781835462140"><img src="https://m.media-amazon.com/images/I/810h3uxswlL._SL1500_.jpg" alt="Shipping & Fee Details" height="256px" align="right"></a>
-
-This is the code repository for [Big Data on Kubernetes](https://www.packtpub.com/en-in/product/big-data-on-kubernetes-9781835462140), published by Packt.
+<img src="./img/Big-Data-on-Kubernetes.jpg" alt="Big Data on Kubernetes" height="256px" align="right">
 
 **A practical guide to building efficient and 
 scalable data solutions**
@@ -19,51 +17,46 @@ This book covers the following exciting features:
 * Build and orchestrate a complete big data pipeline using open-source tools
 * Deploy Generative AI applications on a Kubernetes-based architecture
 
-If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1835462146) today!
 
-<a href="https://www.packtpub.com/?utm_source=github&utm_medium=banner&utm_campaign=GitHubBanner"><img src="https://raw.githubusercontent.com/PacktPublishing/GitHub/master/GitHub.png" 
-alt="https://www.packtpub.com/" border="5" /></a>
+<summary><h2>Chapters</summary>
 
-## Instructions and Navigations
-All of the code is organized into folders. For example, Chapter01.
+<ol>
+  <li>📖 Introduction to Microservices</li>
+</ol>
 
-The code will look like the following:
-```
-import pandas as pd
-url = 'https://raw.githubusercontent.com/jbrownlee/Datasets/
-master/pima-indians-diabetes.data.csv'
+Part 1: Docker and Kubernetes
 
-df = pd.read_csv(url, header=None)
+<ol>
+  <li>⏭️ Getting Started with Containers</li>
+  <li>⏭️ Kubernetes Architecture</li>
+  <li>⏭️ Getting Hands-On with Kubernetes</li>
 
-df["newcolumn"] = df[5].apply(lambda x: x*2)
+ </ol>
 
-print(df.columns)
-print(df.head())
-print(df.shape)
+Part 2: Big Data Stack
 
-```
+<ol start="4">
+  <li>The Modern Data Stack</li>
+  <li>Big Data Processing with Apache Spark</li>
+  <li>Building Pipelines with Apache Airflow</li>
+  <li>Apache Kafka for Real-Time Events and Data Ingestion</li>
+</ol>
 
-**Following is what you need for this book:**
-If you are a data engineer, BI analyst, data team leader, data architect, or tech manager with a basic understanding of big data technologies, then this big data book is for you. Familiarity with the basics of Python programming, SQL queries, and YAML is required to understand the topics discussed in this book
+Part 3: Connecting It All Together
 
-With the following software and hardware list you can run all code files present in the book (Chapter 1-11).
-### Software and Hardware List
-| Chapter | Software required | OS required |
-| -------- | ------------------------------------ | ----------------------------------- |
-| 1-11 | Python>=3.9 | Windows, macOS, or Linux |
-| 1-11 | Docker, the latest version available | Linux |
-| 1-11 | Docker Desktop, the latest version available | Windows or macOS |
-| 1-11 | Kubectl | Windows, macOS, or Linux |
-| 1-11 | Awscli | Windows, macOS, or Linux |
-| 1-11 | Eksctl | Windows, macOS, or Linux |
-| 1-11 | DBeaver Community Edition | Windows, macOS, or Linux |
-
-### Related products
-* Data Engineering with Databricks Cookbook [[Packt]](https://www.packtpub.com/en-in/product/data-engineering-with-databricks-cookbook-9781837633357?type=subscription) [[Amazon]](https://www.amazon.com/dp/1837633355)
-
-* Data Engineering with Scala and Spark [[Packt]](https://www.packtpub.com/en-in/product/data-engineering-with-scala-and-spark-9781804612583?type=subscription) [[Amazon]](https://www.amazon.com/dp/1804612588)
+<ol start="8">
+  <li>Deploying the Big Data Stack on Kubernetes</li>
+  <li>Data Consumption Layer</li>
+  <li>Building a Big Data Pipeline on Kubernetes</li>
+  <li>Generative AI on Kubernetes</li>
+  <li>here to Go from Here</li>
+</ol>
 
 
-## Get to Know the Author
-**Neylson Crepalde**
-is a Generative AI Strategist at AWS. Prior to that, he was CTO at A3Data, a consulting company focused on Data, Analytics and Artificial Intelligence. He holds a PhD in Economic Sociology, a master in Sociology of Culture, an MBA in Cultural Management and a Bachelor in Orchestra Conducting. He has been working with data since 2015. He is committed to sharing knowledge with people of every professional level and helping data teams achieve their best. He is several times AWS certified, Spark certified, Neo4j certified and Airflow certified. Neylson has been teaching for 10+ years now in colleges and MBA programs and he gives regular talks and lectures on Data Architecture, AI strategy, Data Governance and Network Science.
+<br/><br/>
+
+---
+
+<br/>
+
+<a href="https://k8s.ru/">Предложить инженеру работу / подработку на проекте с kubernetes, microservices, machine learning, big data, golang</a>

@@ -18,7 +18,9 @@ This book covers the following exciting features:
 * Deploy Generative AI applications on a Kubernetes-based architecture
 
 
-<summary><h2>Chapters</summary>
+<br/>
+
+## Chapters:
 
 <ol>
   <li>📖 Introduction to Microservices</li>

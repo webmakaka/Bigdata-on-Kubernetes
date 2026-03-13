@@ -2,10 +2,10 @@
 
 <img src="./img/Big-Data-on-Kubernetes.jpg" alt="Big Data on Kubernetes" height="256px" align="right">
 
-**A practical guide to building efficient and 
-scalable data solutions**
+**A practical guide to building efficient and scalable data solutions**
 
 ## What is this book about?
+
 With step-by-step instructions and examples, this book will teach you the skills needed to build and deploy complex data pipelines on Kubernetes, resulting in efficient and scalable big data solutions.
 
 This book covers the following exciting features:
@@ -26,16 +26,16 @@ This book covers the following exciting features:
 Part 1: Docker and Kubernetes
 
 <ol>
-  <li>⏭️ Getting Started with Containers</li>
-  <li>⏭️ Kubernetes Architecture</li>
-  <li>⏭️ Getting Hands-On with Kubernetes</li>
+  <li>✅ Getting Started with Containers</li>
+  <li>📖 Kubernetes Architecture</li>
+  <li>Getting Hands-On with Kubernetes</li>
 
  </ol>
 
 Part 2: Big Data Stack
 
 <ol start="4">
-  <li>The Modern Data Stack</li>
+  <li>📖 The Modern Data Stack</li>
   <li>Big Data Processing with Apache Spark</li>
   <li>Building Pipelines with Apache Airflow</li>
   <li>Apache Kafka for Real-Time Events and Data Ingestion</li>
@@ -48,7 +48,7 @@ Part 3: Connecting It All Together
   <li>Data Consumption Layer</li>
   <li>Building a Big Data Pipeline on Kubernetes</li>
   <li>Generative AI on Kubernetes</li>
-  <li>here to Go from Here</li>
+  <li>📖 Where to Go from Here</li>
 </ol>
 
 

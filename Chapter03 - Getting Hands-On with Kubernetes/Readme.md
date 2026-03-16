@@ -105,6 +105,56 @@ NAME      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
 jokeapi   ClusterIP   10.96.97.200   <none>        80/TCP    22s
 ```
 
+<br/>
+
+### Using an ingress to access the API
+
+<br/>
+
+```
+$ kubectl create namespace ingress-nginx
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.3/deploy/static/provider/baremetal/deploy.yaml -n ingress-nginx
+```
+
+<br/>
+
+```
+$ kubectl edit service ingress-nginx-controller -n ingress-nginx
+```
+
+Search for the spec.type field and change its value to LoadBalancer.
+
+<br/>
+
+```yaml
+$ cat << EOF | kubectl apply -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jokeapi-ingress
+  namespace: jokeapi
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jokeapi
+            port:
+              number: 80
+EOF
+```
+
+<br/>
+
+```
+$ kubectl get ingress -n jokeapi
+NAME              CLASS   HOSTS   ADDRESS   PORTS   AGE
+jokeapi-ingress   nginx   *                 80      37s
+```
 
 <br/><br/>
 

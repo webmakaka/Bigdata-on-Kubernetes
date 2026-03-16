@@ -28,7 +28,7 @@ Part 1: Docker and Kubernetes
 <ol>
   <li>✅ Getting Started with Containers</li>
   <li>📖 Kubernetes Architecture</li>
-  <li>Getting Hands-On with Kubernetes</li>
+  <li>✅ Getting Hands-On with Kubernetes</li>
 
  </ol>
 

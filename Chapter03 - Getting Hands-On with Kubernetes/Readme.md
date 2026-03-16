@@ -54,7 +54,7 @@ spec:
     spec:
       containers:
       - name: jokeapi
-        image: neylsoncrepalde/jokeapi:v1
+        image: webmakaka/jokeapi:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8087 
@@ -145,7 +145,7 @@ spec:
     spec:
       containers:
       - name: dataprocessingjob
-        image: neylsoncrepalde/dataprocessingjob:v1
+        image: webmakaka/dataprocessingjob:v1
       restartPolicy: Never
   backoffLimit: 4
 EOF

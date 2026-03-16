@@ -97,6 +97,15 @@ spec:
 EOF
 ```
 
+<br/>
+
+```
+$ kubectl get services -n jokeapi
+NAME      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+jokeapi   ClusterIP   10.96.97.200   <none>        80/TCP    22s
+```
+
+
 <br/><br/>
 
 ---

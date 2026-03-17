@@ -92,8 +92,8 @@ $ jupyter lab
 <br/>
 
 ```
-run -> read_titanic_dataset.ipynb
-run -> analyzing_imdb_data.ipynb
+run -> run all cells -> read_titanic_dataset.ipynb
+run -> run all cells -> analyzing_imdb_data.ipynb
 ```
 
 <br/>

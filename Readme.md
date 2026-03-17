@@ -36,7 +36,7 @@ Part 2: Big Data Stack
 
 <ol start="4">
   <li>📖 The Modern Data Stack</li>
-  <li>Big Data Processing with Apache Spark</li>
+  <li>✅ Big Data Processing with Apache Spark</li>
   <li>Building Pipelines with Apache Airflow</li>
   <li>Apache Kafka for Real-Time Events and Data Ingestion</li>
 </ol>

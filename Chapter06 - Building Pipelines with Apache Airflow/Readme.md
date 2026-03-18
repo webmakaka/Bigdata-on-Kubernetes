@@ -36,6 +36,23 @@ http://localhost:8080
 <br/>
 
 ```
+$ vi requirements.txt
+```
+
+```
+apache-airflow-providers-postgres
+apache-airflow-providers-amazon
+```
+
+
+```
+$ astro dev restart
+```
+
+
+<br/>
+
+```
 $ astro dev kill
 ```
 

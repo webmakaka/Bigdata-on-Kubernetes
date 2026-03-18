@@ -1,6 +1,7 @@
 from airflow.decorators import task, dag
 from airflow.models import Variable
-from airflow.providers.postgres.operators.postgres import PostgresOperator
+#from airflow.providers.postgres.operators.postgres import PostgresOperator
+from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator as PostgresOperator
 from datetime import datetime
 import requests
 import pandas as pd
@@ -14,7 +15,7 @@ aws_secret_access_key = Variable.get('aws_secret_access_key')
 
 s3_client = boto3.client(
     's3',
-    aws_access_key_id=aws_access_key_id, 
+    aws_access_key_id=aws_access_key_id,
     aws_secret_access_key=aws_secret_access_key
 )
 
@@ -25,25 +26,25 @@ default_args = {
 
 @dag(
         default_args=default_args, 
-        schedule_interval="@once", 
+        schedule="@once", 
         description="Insert Data into PostgreSQL and AWS", 
         catchup=False, 
         tags=['postgres', 'aws']
 )
 def postgres_aws_dag():
-    
+
     # Tasks definition
     @task
     def download_data():
         destination = "/tmp/titanic.csv"
         response = requests.get(
-            "https://raw.githubusercontent.com/neylsoncrepalde/titanic_data_with_semicolon/main/titanic.csv", 
+            "https://raw.githubusercontent.com/neylsoncrepalde/titanic_data_with_semicolon/main/titanic.csv",
             stream=True
         )
         with open(destination, mode="wb") as file:
             file.write(response.content)
         return destination
-    
+
     @task
     def write_to_postgres(source):
         df = pd.read_csv(source, sep=";")
@@ -51,10 +52,10 @@ def postgres_aws_dag():
 
     create_view = PostgresOperator(
         task_id="create_view",
-        postgres_conn_id="postgres",
+        conn_id="postgres",
         sql="""
             CREATE OR REPLACE VIEW titanic_count_survivors AS
-            SELECT 
+            SELECT
                 "Sex",
                 SUM("Survived") as survivors_count
             FROM titanic

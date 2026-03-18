@@ -10,13 +10,6 @@ OpenJDK Runtime Environment (build 17.0.18+8-Ubuntu-122.04.1)
 OpenJDK 64-Bit Server VM (build 17.0.18+8-Ubuntu-122.04.1, mixed mode, sharing)
 ```
 
-<!-- <br/>
-
-```
-$ sudo vi /etc/hosts
-127.0.0.1 postgres
-``` -->
-
 <br/>
 
 ```

@@ -1,5 +1,15 @@
 # Chapter 06 - Building Pipelines with Apache Airflow
 
+
+<br/>
+
+```
+$ sudo vi /etc/hosts
+127.0.0.1 postgres
+``` 
+
+<br/>
+
 Install the Astro CLI
 
 https://docs.astronomer.io/astro/cli/install-cli

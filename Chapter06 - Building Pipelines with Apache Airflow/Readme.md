@@ -29,6 +29,10 @@ $ astro dev start
 http://localhost:8080
 ```
 
+**titanic_dag.py**
+
+<img src="../img/chapter06-pic01.png">
+
 <br/>
 
 ```

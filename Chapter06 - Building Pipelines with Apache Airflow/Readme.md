@@ -94,6 +94,12 @@ Post: 5432
 Save
 ```
 
+<br/>
+
+```
+select * from titanic;
+select * from titanic_count_survivors;
+```
 
 <br/>
 

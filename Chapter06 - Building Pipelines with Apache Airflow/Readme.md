@@ -13,8 +13,10 @@ $ curl -sSL install.astronomer.io | sudo bash -s
 <br/>
 
 ```
-$ mkdir airflow
-$ cd airflow/
+$ mkdir ~/tmp/airflow
+$ cp -r ./dags ~/tmp/airflow/
+
+$ cd ~/tmp/airflow
 
 $ astro dev init
 $ astro dev start
@@ -33,13 +35,10 @@ http://localhost:8080
 $ astro dev kill
 ```
 
+
 <br/>
 
-```
-$ cd Chapter06/dags
-$ cp ./* airflow/dags/
-$ astro dev start
-```
+### Airflow integration with other tools
 
 Имеет 2 DAG
 

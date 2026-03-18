@@ -49,6 +49,15 @@ apache-airflow-providers-postgres
 apache-airflow-providers-amazon
 ```
 
+```
+$ vi .env
+```
+
+```
+AIRFLOW_VAR_AWS_ACCESS_KEY_ID=my-key
+AIRFLOW_VAR_AWS_SECRET_ACCESS_KEY=my-secret
+```
+
 
 ```
 $ astro dev restart

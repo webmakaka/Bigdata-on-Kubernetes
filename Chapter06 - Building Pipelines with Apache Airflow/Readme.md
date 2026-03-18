@@ -44,6 +44,14 @@ apache-airflow-providers-amazon
 $ astro dev restart
 ```
 
+```
+$ astro dev bash --scheduler
+Execing into the scheduler container
+
+astro@713417aabd1d:/usr/local/airflow$ pip list | grep postgres
+apache-airflow-providers-postgres        6.6.1
+```
+
 
 <br/>
 

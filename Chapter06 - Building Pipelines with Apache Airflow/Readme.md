@@ -58,12 +58,12 @@ AIRFLOW_VAR_AWS_ACCESS_KEY_ID=my-key
 AIRFLOW_VAR_AWS_SECRET_ACCESS_KEY=my-secret
 ```
 
-
 ```
 $ astro dev restart
 ```
 
 ```
+// Проверка установки пакета
 $ astro dev bash --scheduler
 Execing into the scheduler container
 
@@ -78,19 +78,6 @@ apache-airflow-providers-postgres        6.6.1
 $ astro dev kill
 ```
 
-
-<br/>
-
-### Airflow integration with other tools
-
-Имеет 2 DAG
-
-1. Демо
-2. Записывает данные в базу postgres и в облако AWS (если у вас есть такая возможность)
-
-<br/>
-
-При старте ошибка DAG, нужно Airflow -> Admin -> Variables. Добавить переменные см. по коду какие нужны.
 
 <br/>
 

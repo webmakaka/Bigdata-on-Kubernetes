@@ -24,11 +24,6 @@ $ astro dev start
 
 <br/>
 
-```
-// admin / admin
-http://localhost:8080
-```
-
 **titanic_dag.py**
 
 <img src="../img/chapter06-pic01.png">

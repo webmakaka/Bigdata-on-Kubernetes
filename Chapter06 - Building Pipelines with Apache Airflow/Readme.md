@@ -79,16 +79,21 @@ $ astro dev kill
 ```
 
 
-<br/>
+Ariflow -> Admin -> Connections -> Add Connection
 
-При старте airflow поднимается база postgres, к которой можно подключиться
+```
+Connection ID: postgres
+Connection Type: postgres
 
-// postgres / postgres
-// localhost
+Host: postgres
+Database: postgres
+Login: postgres
+Password: postgres
+Post: 5432
 
-<br/>
+Save
+```
 
-Airflow -> Admin -> Connections
 
 <br/>
 

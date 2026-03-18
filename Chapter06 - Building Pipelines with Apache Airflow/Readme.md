@@ -97,7 +97,10 @@ Save
 <br/>
 
 ```
+// OK!
 select * from titanic;
+
+// OK!
 select * from titanic_count_survivors;
 ```
 

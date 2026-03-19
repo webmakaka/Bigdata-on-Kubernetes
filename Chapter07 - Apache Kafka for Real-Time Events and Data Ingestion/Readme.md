@@ -278,6 +278,18 @@ $ curl -s localhost:8083/connectors/pg-connector-json/status | jq
 <br/>
 
 ```
+$ docker compose exec broker kafka-topics --list --bootstrap-server localhost:9092
+__consumer_offsets
+_schemas
+docker-connect-configs
+docker-connect-offsets
+docker-connect-status
+json-customers
+```
+
+<br/>
+
+```
 // Пропустим пока AWS
 // $ curl -X POST -H "Content-Type: application/json" --data @connectors/connect_s3_sink.config localhost:8083/connectors
 ```

@@ -179,12 +179,11 @@ $ docker compose exec broker kafka-topics --create --bootstrap-server localhost:
 <br/>
 
 ```
+// Удалить, если что-то пошло не так
+// curl -X DELETE localhost:8083/connectors/pg-connector-json
+
 // register the connectors
 $ curl -X POST -H "Content-Type: application/json" --data @connectors/connect_jdbc_pg_json.config localhost:8083/connectors | jq
-
-
-// Пропустим пока AWS
-// $ curl -X POST -H "Content-Type: application/json" --data @connectors/connect_s3_sink.config localhost:8083/connectors
 ```
 
 <br/>
@@ -269,6 +268,12 @@ $ curl -s localhost:8083/connectors/pg-connector-json/status | jq
 }
 ```
 
+<br/>
+
+```
+// Пропустим пока AWS
+// $ curl -X POST -H "Content-Type: application/json" --data @connectors/connect_s3_sink.config localhost:8083/connectors
+```
 
 <br/>
 

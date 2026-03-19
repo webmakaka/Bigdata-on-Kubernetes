@@ -250,7 +250,7 @@ $ kafka-console-consumer --bootstrap-server localhost:9092 --topic json-customer
 
 <br/>
 
-**Real-time data processing with Kafka and Spark**
+### Real-time data processing with Kafka and Spark
 
 <br/>
 

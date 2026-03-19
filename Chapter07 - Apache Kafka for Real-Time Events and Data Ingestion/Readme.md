@@ -250,6 +250,28 @@ $ kafka-console-consumer --bootstrap-server localhost:9092 --topic json-customer
 
 <br/>
 
+```
+$ curl -s localhost:8083/connectors/pg-connector-json/status | jq
+{
+  "name": "pg-connector-json",
+  "connector": {
+    "state": "RUNNING",
+    "worker_id": "connect:8083"
+  },
+  "tasks": [
+    {
+      "id": 0,
+      "state": "RUNNING",
+      "worker_id": "connect:8083"
+    }
+  ],
+  "type": "source"
+}
+```
+
+
+<br/>
+
 ### Real-time data processing with Kafka and Spark
 
 <br/>

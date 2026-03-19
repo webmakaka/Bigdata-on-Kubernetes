@@ -165,7 +165,7 @@ $ ^C
 <br/>
 
 ```
-// OK! Данные добавляются
+// OK! Данные добавлены
 SQL> SELECT * FROM "public"."customers"
 ```
 

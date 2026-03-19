@@ -165,6 +165,13 @@ $ ^C
 <br/>
 
 ```
+// OK!
+$ docker compose exec postgres psql -U postgres -d postgres -c 'SELECT count(*), max(dt_update) FROM customers;
+```
+
+<br/>
+
+```
 // OK! Данные добавлены
 SQL> SELECT * FROM "public"."customers"
 ```

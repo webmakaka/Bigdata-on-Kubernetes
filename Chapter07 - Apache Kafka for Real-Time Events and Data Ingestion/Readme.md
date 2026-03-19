@@ -140,7 +140,7 @@ $ vi .env_kafka_connect
 <br/>
 
 ```
-$ docker-compose up -d
+$ docker compose up -d
 ```
 
 <br/>
@@ -173,7 +173,7 @@ SQL> SELECT * FROM "public"."customers"
 
 ```
 // Создаем топик json-customers
-$ docker-compose exec broker kafka-topics --create --bootstrap-server localhost:9092 --partitions 2 --replication-factor 1 --topic json-customers
+$ docker compose exec broker kafka-topics --create --bootstrap-server localhost:9092 --partitions 2 --replication-factor 1 --topic json-customers
 ```
 
 <br/>
@@ -274,7 +274,7 @@ $ python simulations/make_fake_data.py
 <br/>
 
 ```
-$ docker-compose down
+$ docker compose down
 ```
 
 

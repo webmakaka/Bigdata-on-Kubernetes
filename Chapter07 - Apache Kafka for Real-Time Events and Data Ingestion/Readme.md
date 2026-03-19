@@ -8,7 +8,7 @@ $ cd Chapter07/multinode
 <br/>
 
 ```
-$ docker-compose up -d
+$ docker compose up -d
 ```
 
 <br/>
@@ -48,18 +48,21 @@ $ GROUP=mygroup
 <br/>
 
 ```
+// OK!
 $ kafka-topics --create --bootstrap-server $BOOTSTRAP_SERVER --replication-factor 3 --partitions 3 --topic $TOPIC
 ```
 
 <br/>
 
 ```
+// OK!
 $ kafka-topics --list --bootstrap-server $BOOTSTRAP_SERVER
 ```
 
 <br/>
 
 ```
+// OK!
 $ kafka-topics --bootstrap-server $BOOTSTRAP_SERVER --describe --topic $TOPIC
 ```
 
@@ -76,6 +79,10 @@ Topic: mytopic	TopicId: FDSRMlR1SGaDzIhi5x2fEQ	PartitionCount: 3	ReplicationFact
 
 ```
 $ kafka-console-producer --broker-list $BOOTSTRAP_SERVER --topic $TOPIC
+```
+
+```
+> Hello!
 ```
 
 <br/>
@@ -97,18 +104,25 @@ $ TOPIC=mytopic
 <br/>
 
 ```
+// OK!
 $ kafka-console-consumer --bootstrap-server $BOOTSTRAP_SERVER --topic $TOPIC --from-beginning
 ```
 
 <br/>
 
 ```
-$ docker-compose down
+Hello!
 ```
 
 <br/>
 
-**Streaming from a database with Kafka Connect**
+```
+$ docker compose down
+```
+
+<br/>
+
+### Streaming from a database with Kafka Connect
 
 ```
 $ cd Chapter07/connect/kafka-connect-custom-image

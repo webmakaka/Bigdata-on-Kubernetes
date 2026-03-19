@@ -166,14 +166,8 @@ $ ^C
 
 ```
 // OK!
-$ docker compose exec postgres psql -U postgres -d postgres -c 'SELECT count(*), max(dt_update) FROM customers;
-```
-
-<br/>
-
-```
-// OK! Данные добавлены
-SQL> SELECT * FROM "public"."customers"
+$ docker compose exec postgres psql -U postgres -d postgres -c 'SELECT * FROM customers';
+$ docker compose exec postgres psql -U postgres -d postgres -c 'SELECT count(*), max(dt_update) FROM customers';
 ```
 
 <br/>
@@ -208,10 +202,12 @@ $ curl -X POST -H "Content-Type: application/json" --data @connectors/connect_jd
     "connection.password": "postgres",
     "mode": "timestamp",
     "timestamp.column.name": "dt_update",
-    "table.whitelist": "public.customers",
+    "table.whitelist": "customers",
     "topic.prefix": "json-",
     "validate.non.null": "false",
     "poll.interval.ms": "500",
+    "db.timezone": "UTC",
+    "timestamp.initial": "0",
     "name": "pg-connector-json"
   },
   "tasks": [],
@@ -235,24 +231,6 @@ $ curl -s localhost:8083/connectors | jq
 
 <br/>
 
-```
-$ docker logs connect
-```
-
-<br/>
-
-```
-// FAIL!
-$ docker exec -it broker kafka-console-consumer --bootstrap-server localhost:9092 --topic json-customers --from-beginning
-```
-
-<br/>
-
-```
-Ничего не появилось!
-```
-
-<br/>
 
 ```
 $ curl -s localhost:8083/connectors/pg-connector-json/status | jq
@@ -272,6 +250,26 @@ $ curl -s localhost:8083/connectors/pg-connector-json/status | jq
   "type": "source"
 }
 ```
+
+<br/>
+
+```
+$ docker logs connect
+```
+
+<br/>
+
+```
+// FAIL!
+$ docker exec -it broker kafka-console-consumer --bootstrap-server localhost:9092 --topic json-customers --from-beginning
+```
+
+<br/>
+
+```
+Ничего не появилось!
+```
+
 
 <br/>
 
@@ -304,6 +302,11 @@ $ docker compose exec postgres psql -U postgres -d postgres -c "UPDATE customers
 ```
 // Пропустим пока AWS
 // $ curl -X POST -H "Content-Type: application/json" --data @connectors/connect_s3_sink.config localhost:8083/connectors
+```
+
+
+```
+$ docker compose down -v
 ```
 
 <br/>

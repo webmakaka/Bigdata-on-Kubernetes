@@ -242,10 +242,8 @@ $ docker logs connect
 <br/>
 
 ```
-// Прверка
-// You should see the messages in JSON format printed on the screen
-$ docker exec -it broker bash
-$ kafka-console-consumer --bootstrap-server localhost:9092 --topic json-customers --from-beginning
+// FAIL!
+$ docker exec -it broker kafka-console-consumer --bootstrap-server localhost:9092 --topic json-customers --from-beginning
 ```
 
 <br/>
@@ -286,6 +284,9 @@ docker-connect-offsets
 docker-connect-status
 json-customers
 ```
+
+
+
 
 <br/>
 

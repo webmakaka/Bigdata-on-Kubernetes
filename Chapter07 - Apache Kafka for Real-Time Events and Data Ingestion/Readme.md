@@ -288,9 +288,16 @@ json-customers
 <br/>
 
 ```
+// OK!
 $ docker compose exec postgres psql -U postgres -d postgres -c "UPDATE customers SET dt_update = NOW();"
 ```
 
+
+<br/>
+
+```
+Нужно правильно модифицировать connector, т.к. с датами что-то не то.
+```
 
 <br/>
 

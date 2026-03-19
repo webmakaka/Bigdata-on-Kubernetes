@@ -285,7 +285,11 @@ docker-connect-status
 json-customers
 ```
 
+<br/>
 
+```
+$ docker compose exec postgres psql -U postgres -d postgres -c "UPDATE customers SET dt_update = NOW();"
+```
 
 
 <br/>

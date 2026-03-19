@@ -304,6 +304,7 @@ $ docker compose exec postgres psql -U postgres -d postgres -c "UPDATE customers
 // $ curl -X POST -H "Content-Type: application/json" --data @connectors/connect_s3_sink.config localhost:8083/connectors
 ```
 
+<br/>
 
 ```
 $ docker compose down -v
@@ -322,8 +323,48 @@ $ spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2 proce
 <br/>
 
 ```
-// Open another terminal and run more simulations by running the following command
 $ python simulations/make_fake_data.py
+```
+
+<br/>
+
+```
+// OK!
+$ docker compose exec postgres psql -U postgres -d postgres -c "UPDATE customers SET dt_update = NOW();"
+```
+
+<br/>
+
+```
+-------------------------------------------
+Batch: 0
+-------------------------------------------
++------+-----+---------------+----------+-------+
+|gender|count|first_birthdate| first_now|avg_age|
++------+-----+---------------+----------+-------+
+|     F|   15|     1984-11-09|2026-03-20|   55.6|
+|     M|   18|     1970-09-25|2026-03-20|  52.17|
++------+-----+---------------+----------+-------+
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++------+-----+---------------+----------+-------+
+|gender|count|first_birthdate| first_now|avg_age|
++------+-----+---------------+----------+-------+
+|     F|   15|     1984-11-09|2026-03-20|   55.6|
+|     M|   19|     1970-09-25|2026-03-20|  54.21|
++------+-----+---------------+----------+-------+
+
+-------------------------------------------
+Batch: 2
+-------------------------------------------
++------+-----+---------------+----------+-------+
+|gender|count|first_birthdate| first_now|avg_age|
++------+-----+---------------+----------+-------+
+|     F|   28|     1984-11-09|2026-03-20|  56.21|
+|     M|   33|     1970-09-25|2026-03-20|  53.82|
++------+-----+---------------+----------+-------+
 ```
 
 <br/>
@@ -332,10 +373,10 @@ $ python simulations/make_fake_data.py
 Ничего не отработало!
 ```
 
-<br/>
+<<br/>
 
 ```
-$ docker compose down
+$ docker compose down -v
 ```
 
 

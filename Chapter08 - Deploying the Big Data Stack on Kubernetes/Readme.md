@@ -145,6 +145,12 @@ strimzi-cluster-operator-86b64d9bd8-5q277   1/1     Running   0          6m36s
 ```
 
 
+<br/>
+
+```
+$ kind delete cluster
+```
+
 
 <br/><br/>
 

@@ -6,7 +6,7 @@ $ kind create cluster
 
 <br/>
 
-### Deploying Spark on Kubernetes
+### [FAIL!] Deploying Spark on Kubernetes
 
 <br/>
 

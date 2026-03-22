@@ -173,12 +173,8 @@ $ kubectl get sparkapplication -n spark-operator
 
 ```
 $ kubectl get sparkapplication -n spark-operator
-```
-
-<br/>
-
-```
-$ kubectl describe sparkapplication/test-spark-job -n spark-operator
+NAME             STATUS      ATTEMPTS   START                  FINISH       AGE
+test-spark-job   SUBMITTED   1          2026-03-22T04:12:47Z   <no value>   55s
 ```
 
 <br/>

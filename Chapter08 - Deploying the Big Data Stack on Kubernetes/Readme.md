@@ -58,7 +58,7 @@ $ kubectl delete sparkapplication/test-spark-job -n spark-operator
 
 <br/>
 
-### Deploying Airflow on Kubernetes (не заработал)
+### [FAIL!] Deploying Airflow on Kubernetes (не заработал)
 
 ```
 $ helm repo add apache-airflow https://airflow.apache.org

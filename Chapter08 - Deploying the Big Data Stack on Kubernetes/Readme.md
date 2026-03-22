@@ -1,5 +1,9 @@
 # Chapter 08 - Deploying the Big Data Stack on Kubernetes
 
+```
+$ kind create cluster
+```
+
 <br/>
 
 ### Deploying Spark on Kubernetes
@@ -54,7 +58,7 @@ $ kubectl delete sparkapplication/test-spark-job -n spark-operator
 
 <br/>
 
-#### Deploying Airflow on Kubernetes (не заработал)
+### Deploying Airflow on Kubernetes (не заработал)
 
 ```
 $ helm repo add apache-airflow https://airflow.apache.org
@@ -91,7 +95,7 @@ $ kubectl get svc -n airflow
 
 <br/>
 
-#### Deploying Kafka on Kubernetes
+### Deploying Kafka on Kubernetes
 
 ```
 $ helm repo add strimzi https://strimzi.io/charts/

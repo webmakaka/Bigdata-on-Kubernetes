@@ -232,7 +232,7 @@ $ helm repo add apache-airflow https://airflow.apache.org
 <br/>
 
 ```
-$ cd /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter08/airflow
+$ cd Bigdata-on-Kubernetes/Chapter08/airflow
 ```
 
 <br/>
@@ -244,6 +244,7 @@ $ vi custom_values.yaml
 <br/>
 
 ```
+// $ helm uninstall airflow -n airflow
 $ helm install airflow apache-airflow/airflow --namespace airflow --create-namespace -f custom_values.yaml
 ```
 

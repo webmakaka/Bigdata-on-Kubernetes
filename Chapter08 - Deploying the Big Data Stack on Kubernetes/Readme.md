@@ -82,7 +82,13 @@ $ kubectl create secret generic aws-credentials --from-literal=aws_access_key_id
 ```
 
 
+<br/>
+
 Создаю bucket spark и загружаю в него файл spark_job.py, предварительно заменив переменные <YOUR_BUCKET> <YOUR_NEW_BUCKET>
+
+и 
+
+https://raw.githubusercontent.com/neylsoncrepalde/titanic_data_with_semicolon/main/titanic.csv
 
 
 <br/>

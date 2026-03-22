@@ -49,7 +49,7 @@ $ {
 
 <br/>
 
-### [FAIL!] Deploying Spark on Kubernetes
+### [OK!] Deploying Spark on Kubernetes
 
 <br/>
 
@@ -72,7 +72,7 @@ spark-operator-webhook-init-mbkwg   0/1     Completed   0          2m1s
 <br/>
 
 ```
-$ cd /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter08/spark
+$ cd Bigdata-on-Kubernetes/Chapter08/spark
 ```
 
 <br/>
@@ -172,16 +172,43 @@ $ kubectl get sparkapplication -n spark-operator
 <br/>
 
 ```
+// Ждем!
 $ kubectl get sparkapplication -n spark-operator
-NAME             STATUS      ATTEMPTS   START                  FINISH       AGE
-test-spark-job   SUBMITTED   1          2026-03-22T04:12:47Z   <no value>   55s
+NAME             STATUS      ATTEMPTS   START                  FINISH                 AGE
+test-spark-job   COMPLETED   1          2026-03-22T04:12:47Z   2026-03-22T04:14:10Z   3m
+```
+
+
+<br/>
+
+```
+$ kubectl describe sparkapplication/test-spark-job -n spark-operator
 ```
 
 <br/>
 
 ```
 $ kubectl logs test-spark-job-driver -n spark-operator
+root
+ |-- PassengerId: integer (nullable = true)
+ |-- Survived: integer (nullable = true)
+ |-- Pclass: integer (nullable = true)
+ |-- Name: string (nullable = true)
+ |-- Sex: string (nullable = true)
+ |-- Age: double (nullable = true)
+ |-- SibSp: integer (nullable = true)
+ |-- Parch: integer (nullable = true)
+ |-- Ticket: string (nullable = true)
+ |-- Fare: double (nullable = true)
+ |-- Cabin: string (nullable = true)
+ |-- Embarked: string (nullable = true)
+
+*****************
+Successfully written!
+*****************
 ```
+
+<img src="../img/chapter08-pic01.png">
 
 <br/>
 

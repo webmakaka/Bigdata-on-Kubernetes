@@ -223,7 +223,7 @@ $ kubectl delete sparkapplication/test-spark-job -n spark-operator
 
 <br/>
 
-### [FAIL!] Deploying Airflow on Kubernetes (не заработал)
+### [OK!] Deploying Airflow on Kubernetes (не заработал)
 
 ```
 $ helm repo add apache-airflow https://airflow.apache.org
@@ -262,6 +262,15 @@ $ kubectl port-forward svc/airflow-webserver 8080:8080 --namespace airflow
 // admin / admin
 http://localhost:8080/
 ```
+
+<br/>
+
+<img src="../img/chapter08-pic02.png">
+
+
+<br/>
+
+<img src="../img/chapter08-pic03.png">
 
 <br/>
 

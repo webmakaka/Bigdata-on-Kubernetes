@@ -116,7 +116,7 @@ $ helm status kafka -n kafka
 <br/>
 
 ```
-$ kubectl get pods -n kafka
+$ watch -n 2 -c 'kubectl get pods -n kafka'
 ```
 
 ```

@@ -128,7 +128,7 @@ $ kubectl get svc -n airflow
 
 <br/>
 
-### [FAIL!] Deploying Kafka on Kubernetes
+### [OK!] Deploying Kafka on Kubernetes
 
 
 https://artifacthub.io/packages/helm/strimzi/strimzi-kafka-operator
@@ -189,7 +189,7 @@ strimzi-cluster-operator-6f9fbb4c75-zxhh8   1/1     Running   0          3m3s
 <br/>
 
 ```
-$ kind delete cluster
+$ minikube --profile ${PROFILE} stop && minikube --profile ${PROFILE} delete
 ```
 
 

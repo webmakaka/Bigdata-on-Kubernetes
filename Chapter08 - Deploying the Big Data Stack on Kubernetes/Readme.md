@@ -97,6 +97,10 @@ $ kubectl get svc -n airflow
 
 ### [FAIL!] Deploying Kafka on Kubernetes
 
+
+https://artifacthub.io/packages/helm/strimzi/strimzi-kafka-operator
+
+
 ```
 $ helm repo add strimzi https://strimzi.io/charts/
 ```

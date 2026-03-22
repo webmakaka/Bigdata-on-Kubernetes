@@ -1,7 +1,16 @@
 # Chapter 08 - Deploying the Big Data Stack on Kubernetes
 
+<br/>
+
 ```
-$ kind create cluster
+// Версия старше требует новую версию strimzi-cluster-operator, где уже нет zookeeper
+$ export \
+    PROFILE=${USER}-minikube \
+    CPUS=4 \
+    MEMORY=8G \
+    HDD=20G \
+    DRIVER=docker \
+    KUBERNETES_VERSION=v1.31.0
 ```
 
 <br/>
@@ -109,7 +118,7 @@ $ helm repo add strimzi https://strimzi.io/charts/
 
 ```
 // $ helm delete kafka -n kafka
-$ helm install kafka strimzi/strimzi-kafka-operator --namespace kafka --create-namespace --version 0.51.0
+$ helm install kafka strimzi/strimzi-kafka-operator --namespace kafka --create-namespace --version 0.44.0
 ```
 
 <br/>
@@ -146,10 +155,10 @@ kafka-cluster   3                        3
 ```
 $ kubectl get pods -n kafka
 NAME                                        READY   STATUS    RESTARTS   AGE
-kafka-cluster-zookeeper-0                   1/1     Running   0          80s
-kafka-cluster-zookeeper-1                   1/1     Running   0          80s
-kafka-cluster-zookeeper-2                   1/1     Running   0          80s
-strimzi-cluster-operator-86b64d9bd8-5q277   1/1     Running   0          6m36s
+kafka-cluster-zookeeper-0                   1/1     Running   0          102s
+kafka-cluster-zookeeper-1                   1/1     Running   0          101s
+kafka-cluster-zookeeper-2                   1/1     Running   0          101s
+strimzi-cluster-operator-6f9fbb4c75-zxhh8   1/1     Running   0          3m3s
 ```
 
 

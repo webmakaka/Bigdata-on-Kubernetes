@@ -15,6 +15,30 @@ $ export \
 
 <br/>
 
+```
+$ {
+    minikube --profile ${PROFILE} config set memory ${MEMORY}
+    minikube --profile ${PROFILE} config set cpus ${CPUS}
+    minikube --profile ${PROFILE} config set disk-size ${HDD}
+
+    minikube --profile ${PROFILE} config set driver ${DRIVER}
+
+    minikube --profile ${PROFILE} config set kubernetes-version ${KUBERNETES_VERSION}
+    minikube start --profile ${PROFILE} --embed-certs
+
+    // Enable ingress
+    minikube addons --profile ${PROFILE} enable ingress
+
+    // Enable registry
+    // minikube addons --profile ${PROFILE} enable registry
+
+    // Enable metallb
+    minikube addons --profile ${PROFILE} enable metallb
+}
+```
+
+<br/>
+
 ### [FAIL!] Deploying Spark on Kubernetes
 
 <br/>

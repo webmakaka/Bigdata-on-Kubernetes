@@ -2,16 +2,15 @@
 
 <br/>
 
-#### Deploying Spark on Kubernetes
-
-```
-$ kubectl create namespace spark-operator
-```
+### Deploying Spark on Kubernetes
 
 <br/>
 
 ```
-$ helm install spark-operator https://github.com/kubeflow/spark-operator/releases/download/spark-operator-chart-1.1.27/spark-operator-1.1.27.tgz --namespace spark-operator --set webhook.enable=true
+$ helm install spark-operator https://github.com/kubeflow/spark-operator/releases/download/spark-operator-chart-1.1.27/spark-operator-1.1.27.tgz \
+  --namespace spark-operator \
+  --create-namespace \
+  --set webhook.enable=true
 ```
 
 <br/>
@@ -27,6 +26,30 @@ spark-operator-webhook-init-mbkwg   0/1     Completed   0          2m1s
 
 ```
 $ cd /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter08/spark
+```
+
+```
+$ kubectl apply -f spark_job.yaml -n spark-operator
+```
+
+```
+$ kubectl get sparkapplication -n spark-operator
+```
+
+```
+$ kubectl get sparkapplication -n spark-operator
+```
+
+```
+$ kubectl describe sparkapplication/test-spark-job -n spark-operator
+```
+
+```
+$ kubectl logs test-spark-job-driver -n spark-operator
+```
+
+```
+$ kubectl delete sparkapplication/test-spark-job -n spark-operator
 ```
 
 <br/>

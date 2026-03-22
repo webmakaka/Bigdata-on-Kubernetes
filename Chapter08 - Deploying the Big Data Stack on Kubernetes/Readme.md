@@ -251,11 +251,6 @@ $ helm install airflow apache-airflow/airflow \
     --values custom_values.yaml
 ```
 
-<br/>
-
-```
-$ kubectl port-forward svc/airflow-webserver 8080:8080 --namespace airflow
-```
 
 <br/>
 

@@ -85,25 +85,103 @@ $ kubectl create secret generic aws-credentials --from-literal=aws_access_key_id
 Создаю bucket spark и загружаю в него файл spark_job.py, предварительно заменив переменные <YOUR_BUCKET> <YOUR_NEW_BUCKET>
 
 
+<br/>
+
+```yaml
+$ cat <<EOF | kubectl apply -f -
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: test-spark-job
+  namespace: spark-operator
+spec:
+  volumes:
+    - name: ivy
+      emptyDir: {}
+  sparkConf:
+    spark.driver.extraJavaOptions: "-Divy.cache.dir=/tmp -Divy.home=/tmp"
+    spark.kubernetes.allocation.batch.size: "10"
+  hadoopConf:
+    fs.s3a.impl: org.apache.hadoop.fs.s3a.S3AFileSystem
+    # Обязательно: адрес вашего MinIO (тот, что выдал MetalLB)
+    fs.s3a.endpoint: "http://192.168.49.20:9000"
+    # Обязательно: для работы с MinIO через IP
+    fs.s3a.path.style.access: "true"
+    # Отключаем SSL, так как в локальном MinIO его обычно нет
+    fs.s3a.connection.ssl.enabled: "false"
+    # Подтягиваем ключи из вашего секрета автоматически для Hadoop
+    fs.s3a.access.key: "admin"
+    fs.s3a.secret.key: "password123"
+  type: Python
+  pythonVersion: "3"
+  mode: cluster
+  image: "docker.io/neylsoncrepalde/spark-operator:v3.1.1-hadoop3-aws-kafka"
+  imagePullPolicy: Always
+  mainApplicationFile: s3a://spark/spark_job.py
+  sparkVersion: "3.1.1"
+  restartPolicy:
+    type: Never
+  driver:
+    envSecretKeyRefs:
+      AWS_ACCESS_KEY_ID:
+        name: aws-credentials
+        key: aws_access_key_id
+      AWS_SECRET_ACCESS_KEY:
+        name: aws-credentials
+        key: aws_secret_access_key
+    cores: 1
+    coreLimit: "1200m"
+    memory: "1g"
+    labels:
+      version: 3.1.1
+    serviceAccount: spark-operator-spark
+    volumeMounts:
+      - name: ivy
+        mountPath: /tmp
+  executor:
+    envSecretKeyRefs:
+      AWS_ACCESS_KEY_ID:
+        name: aws-credentials
+        key: aws_access_key_id
+      AWS_SECRET_ACCESS_KEY:
+        name: aws-credentials
+        key: aws_secret_access_key
+    cores: 1
+    instances: 1
+    memory: "1g"
+    labels:
+      version: 3.1.1
+    volumeMounts:
+      - name: ivy
+        mountPath: /tmp
+EOF
 ```
-$ kubectl apply -f spark_job.yaml -n spark-operator
-```
+
+<br/>
 
 ```
 $ kubectl get sparkapplication -n spark-operator
 ```
 
+<br/>
+
 ```
 $ kubectl get sparkapplication -n spark-operator
 ```
+
+<br/>
 
 ```
 $ kubectl describe sparkapplication/test-spark-job -n spark-operator
 ```
 
+<br/>
+
 ```
 $ kubectl logs test-spark-job-driver -n spark-operator
 ```
+
+<br/>
 
 ```
 $ kubectl delete sparkapplication/test-spark-job -n spark-operator

@@ -39,6 +39,10 @@ $ {
 
 <br/>
 
+[Нужен addon Metal LB](//docs.k8s.ru/tools/containers/kubernetes/utils/metal-lb/minikube/setup/addon/)
+
+<br/>
+
 ### [FAIL!] Deploying Spark on Kubernetes
 
 <br/>
@@ -177,12 +181,29 @@ kafka-cluster   3                        3
 <br/>
 
 ```
+// Нужно ждать!
 $ kubectl get pods -n kafka
 NAME                                        READY   STATUS    RESTARTS   AGE
-kafka-cluster-zookeeper-0                   1/1     Running   0          102s
-kafka-cluster-zookeeper-1                   1/1     Running   0          101s
-kafka-cluster-zookeeper-2                   1/1     Running   0          101s
-strimzi-cluster-operator-6f9fbb4c75-zxhh8   1/1     Running   0          3m3s
+kafka-cluster-kafka-0                       1/1     Running   0          63s
+kafka-cluster-kafka-1                       1/1     Running   0          63s
+kafka-cluster-kafka-2                       1/1     Running   0          63s
+kafka-cluster-zookeeper-0                   1/1     Running   0          87s
+kafka-cluster-zookeeper-1                   1/1     Running   0          87s
+kafka-cluster-zookeeper-2                   1/1     Running   0          87s
+strimzi-cluster-operator-6f9fbb4c75-zxhh8   1/1     Running   0          13m
+```
+
+```
+$ kubectl get svc -n kafka
+NAME                                     TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                                        AGE
+kafka-cluster-kafka-0                    LoadBalancer   10.110.8.234     192.168.49.21   9094:31956/TCP                                 2m19s
+kafka-cluster-kafka-1                    LoadBalancer   10.111.210.63    192.168.49.22   9094:32576/TCP                                 2m19s
+kafka-cluster-kafka-2                    LoadBalancer   10.104.36.248    192.168.49.23   9094:32678/TCP                                 2m19s
+kafka-cluster-kafka-bootstrap            ClusterIP      10.108.187.242   <none>          9091/TCP,9092/TCP,9093/TCP                     2m19s
+kafka-cluster-kafka-brokers              ClusterIP      None             <none>          9090/TCP,9091/TCP,8443/TCP,9092/TCP,9093/TCP   2m19s
+kafka-cluster-kafka-external-bootstrap   LoadBalancer   10.109.196.85    192.168.49.20   9094:30646/TCP                                 2m19s
+kafka-cluster-zookeeper-client           ClusterIP      10.110.241.105   <none>          2181/TCP                                       2m43s
+kafka-cluster-zookeeper-nodes            ClusterIP      None             <none>          2181/TCP,2888/TCP,3888/TCP                     2m43s
 ```
 
 

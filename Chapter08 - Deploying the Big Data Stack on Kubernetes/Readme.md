@@ -111,6 +111,11 @@ $ helm install kafka strimzi/strimzi-kafka-operator --namespace kafka --create-n
 
 ```
 $ helm status kafka -n kafka
+```
+
+<br/>
+
+```
 $ kubectl get pods -n kafka
 ```
 
@@ -125,7 +130,7 @@ $ kubectl apply -f kafka_jbod.yaml -n kafka
 ```
 $ kubectl get kafka -n kafka
 NAME            DESIRED KAFKA REPLICAS   DESIRED ZK REPLICAS   READY   METADATA STATE   WARNINGS
-kafka-cluster   3                        3
+kafka-cluster   3                        3                          
 ```
 
 <br/>

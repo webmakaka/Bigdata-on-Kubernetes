@@ -253,14 +253,20 @@ $ helm install airflow apache-airflow/airflow \
 
 <br/>
 
-Ошибка!
+```
+$ kubectl port-forward svc/airflow-webserver 8080:8080 --namespace airflow
+```
 
 <br/>
 
 ```
-$ kubectl get svc -n airflow
+$ kubectl port-forward svc/airflow-webserver 8080:8080 --namespace airflow
 ```
 
+```
+// admin / admin
+http://localhost:8080/
+```
 
 <br/>
 

@@ -78,7 +78,7 @@ $ cd /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter08/s
 <br/>
 
 ```
-$ kubectl create secret generic aws-credentials --from-literal=aws_access_key_id=<YOUR_ACCESS_KEY_ID> --from-literal=aws_secret_access_key="<YOUR_SECRET_ACCESS_KEY>" -n spark-operator
+$ kubectl create secret generic aws-credentials --from-literal=aws_access_key_id=admin --from-literal=aws_secret_access_key="password123" -n spark-operator
 ```
 
 

@@ -260,8 +260,8 @@ env:
     value: "s3://airflow-logs/airflow-logs/"
   - name: "AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID"
     value: "aws_conn"
-# - name: ""
-#   value: ""
+  - name: "AIRFLOW__CORE__REMOTE_LOGGING"
+    value: "True"
 
 # Volumes for all airflow containers
 volumes: []
@@ -348,7 +348,9 @@ extraConfigMaps: {}
 # Extra env 'items' that will be added to the definition of airflow containers
 # a string is expected (can be templated).
 # TODO: difference from `env`? This is a templated string. Probably should template `env` and remove this.
-extraEnv: ~
+extraEnv: |
+  - name: "AIRFLOW_CONN_AWS_CONN"
+    value: "aws://?aws_access_key_id=admin&aws_secret_access_key=password123&endpoint_url=http%3A%2F%2F192.168.49.20%3A9000"
 # eg:
 # extraEnv: |
 #   - name: AIRFLOW__CORE__LOAD_EXAMPLES

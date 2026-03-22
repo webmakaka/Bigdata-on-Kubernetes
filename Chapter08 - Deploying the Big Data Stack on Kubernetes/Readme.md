@@ -75,6 +75,12 @@ spark-operator-webhook-init-mbkwg   0/1     Completed   0          2m1s
 $ cd /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter08/spark
 ```
 
+<br/>
+
+```
+$ kubectl create secret generic aws-credentials --from-literal=aws_access_key_id=<YOUR_ACCESS_KEY_ID> --from-literal=aws_secret_access_key="<YOUR_SECRET_ACCESS_KEY>" -n spark-operator
+```
+
 
 Создаю bucket spark и загружаю в него файл spark_job.py, предварительно заменив переменные <YOUR_BUCKET> <YOUR_NEW_BUCKET>
 

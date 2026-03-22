@@ -245,7 +245,10 @@ $ vi custom_values.yaml
 
 ```
 // $ helm uninstall airflow -n airflow
-$ helm install airflow apache-airflow/airflow --namespace airflow --create-namespace -f custom_values.yaml
+$ helm install airflow apache-airflow/airflow \
+    --namespace airflow --create-namespace \
+    --version 1.13.1 \
+    --values custom_values.yaml
 ```
 
 <br/>
@@ -275,7 +278,9 @@ $ helm repo add strimzi https://strimzi.io/charts/
 
 ```
 // $ helm delete kafka -n kafka
-$ helm install kafka strimzi/strimzi-kafka-operator --namespace kafka --create-namespace --version 0.44.0
+$ helm install kafka strimzi/strimzi-kafka-operator \
+    --namespace kafka --create-namespace \
+    --version 0.44.0
 ```
 
 <br/>

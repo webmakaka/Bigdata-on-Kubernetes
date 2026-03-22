@@ -1,7 +1,33 @@
 # Chapter 08 - Deploying the Big Data Stack on Kubernetes
 
+<br/>
 
-Сначала Airflow, т.к. косячный!
+#### Deploying Spark on Kubernetes
+
+```
+$ kubectl create namespace spark-operator
+```
+
+<br/>
+
+```
+$ helm install spark-operator https://github.com/kubeflow/spark-operator/releases/download/spark-operator-chart-1.1.27/spark-operator-1.1.27.tgz --namespace spark-operator --set webhook.enable=true
+```
+
+<br/>
+
+```
+$ kubectl get pods -n spark-operator
+NAME                                READY   STATUS      RESTARTS   AGE
+spark-operator-6f5b9cf5f7-mppxm     1/1     Running     0          76s
+spark-operator-webhook-init-mbkwg   0/1     Completed   0          2m1s
+```
+
+<br/>
+
+```
+$ cd /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter08/spark
+```
 
 <br/>
 
@@ -39,34 +65,6 @@ $ helm install airflow apache-airflow/airflow --namespace airflow --create-names
 $ kubectl get svc -n airflow
 ```
 
-<br/>
-
-#### Deploying Spark on Kubernetes
-
-```
-$ kubectl create namespace spark-operator
-```
-
-<br/>
-
-```
-$ helm install spark-operator https://github.com/kubeflow/spark-operator/releases/download/spark-operator-chart-1.1.27/spark-operator-1.1.27.tgz --namespace spark-operator --set webhook.enable=true
-```
-
-<br/>
-
-```
-$ kubectl get pods -n spark-operator
-NAME                                READY   STATUS      RESTARTS   AGE
-spark-operator-6f5b9cf5f7-mppxm     1/1     Running     0          76s
-spark-operator-webhook-init-mbkwg   0/1     Completed   0          2m1s
-```
-
-<br/>
-
-```
-$ cd /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter08/spark
-```
 
 <br/>
 

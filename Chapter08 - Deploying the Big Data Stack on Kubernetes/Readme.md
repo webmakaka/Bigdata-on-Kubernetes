@@ -46,6 +46,11 @@ $ {
 ### [Нужно добавить MINIO для S3](//docs.gitops.ru/tools/containers/kubernetes/utils/minio/)
 
 
+Создал bucket:
+
+* spark
+* spark-new
+* airflow-logs
 
 <br/>
 

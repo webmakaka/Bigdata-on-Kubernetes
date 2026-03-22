@@ -95,7 +95,7 @@ $ kubectl get svc -n airflow
 
 <br/>
 
-### Deploying Kafka on Kubernetes
+### [FAIL!] Deploying Kafka on Kubernetes
 
 ```
 $ helm repo add strimzi https://strimzi.io/charts/

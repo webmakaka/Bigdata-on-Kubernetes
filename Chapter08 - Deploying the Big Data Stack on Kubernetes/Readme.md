@@ -104,7 +104,8 @@ $ helm repo add strimzi https://strimzi.io/charts/
 <br/>
 
 ```
-$ helm install kafka strimzi/strimzi-kafka-operator --namespace kafka --create-namespace --version 0.40.0
+// $ helm delete kafka -n kafka
+$ helm install kafka strimzi/strimzi-kafka-operator --namespace kafka --create-namespace --version 0.51.0
 ```
 
 <br/>
@@ -117,6 +118,8 @@ $ helm status kafka -n kafka
 
 ```
 $ watch -n 2 -c 'kubectl get pods -n kafka'
+NAME                                        READY   STATUS    RESTARTS   AGE
+strimzi-cluster-operator-7d9bbbdf5d-hxhxf   1/1     Running   0          108s
 ```
 
 ```
@@ -124,6 +127,7 @@ $ cd Bigdata-on-Kubernetes/Chapter08/kafka
 ```
 
 ```
+// deploy the cluster to Kubernetes
 $ kubectl apply -f kafka_jbod.yaml -n kafka
 ```
 

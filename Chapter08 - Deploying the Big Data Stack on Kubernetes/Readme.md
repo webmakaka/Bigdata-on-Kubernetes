@@ -39,11 +39,13 @@ $ {
 
 <br/>
 
-### Нужно добавить MINIO для S3 !!!
+### [Нужен addon Metal LB](//docs.k8s.ru/tools/containers/kubernetes/utils/metal-lb/minikube/setup/addon/)
 
 <br/>
 
-[Нужен addon Metal LB](//docs.k8s.ru/tools/containers/kubernetes/utils/metal-lb/minikube/setup/addon/)
+### [Нужно добавить MINIO для S3](//docs.gitops.ru/tools/containers/kubernetes/utils/minio/)
+
+
 
 <br/>
 

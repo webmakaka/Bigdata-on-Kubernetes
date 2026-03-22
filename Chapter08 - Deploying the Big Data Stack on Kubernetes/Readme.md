@@ -120,7 +120,7 @@ $ watch -n 2 -c 'kubectl get pods -n kafka'
 ```
 
 ```
-$ cd /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter08/kafka
+$ cd Bigdata-on-Kubernetes/Chapter08/kafka
 ```
 
 ```

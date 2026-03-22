@@ -1266,7 +1266,7 @@ webserver:
   defaultUser:
     enabled: true
     role: Admin
-    username: neylson.crepalde
+    username: admin
     email: admin@example.com
     firstName: Neylson
     lastName: Crepalde

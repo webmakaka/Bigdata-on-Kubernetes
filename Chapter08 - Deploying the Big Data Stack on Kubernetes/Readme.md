@@ -75,6 +75,10 @@ spark-operator-webhook-init-mbkwg   0/1     Completed   0          2m1s
 $ cd /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter08/spark
 ```
 
+
+Создаю bucket spark и загружаю в него файл spark_job.py, предварительно заменив переменные <YOUR_BUCKET> <YOUR_NEW_BUCKET>
+
+
 ```
 $ kubectl apply -f spark_job.yaml -n spark-operator
 ```

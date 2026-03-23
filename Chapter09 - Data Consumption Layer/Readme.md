@@ -17,6 +17,7 @@ $ cd Bigdata-on-Kubernetes/Chapter09/trino
 <br/>
 
 ```
+// $ helm uninstall trino -n trino
 $ helm install trino trino/trino -f custom_values.yaml -n trino --create-namespace --version 0.19.0
 ```
 

@@ -88,7 +88,14 @@ order by sex, pclass
 <br/>
 
 ```
+// Do not works for me, because Russia has been banned
 // $ helm install elastic-operator elastic/eck-operator -n elastic --create-namespace --version 2.12.1
+```
+
+<br/>
+
+```
+$ helm install elastic-operator ./eck-operator-2.12.1/eck-operator -n elastic --create-namespace
 ```
 
 <br/>
@@ -98,12 +105,14 @@ https://artifacthub.io/packages/helm/elastic/eck-operator/2.12.1
 <br/>
 
 ```
+// Install elasticsearch operator
 $ /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter09/elasticsearch
 ```
 
 <br/>
 
 ```
+$ cd elasticsearch/
 $ kubectl apply -f elastic_cluster.yaml -n elastic
 $ kubectl apply -f kibana.yaml -n elastic
 ```
@@ -112,6 +121,11 @@ $ kubectl apply -f kibana.yaml -n elastic
 
 ```
 $ kubectl get pods -n elastic
+NAME                         READY   STATUS    RESTARTS   AGE
+elastic-es-default-0         0/1     Pending   0          115s
+elastic-es-default-1         0/1     Pending   0          115s
+elastic-operator-0           1/1     Running   0          4m
+kibana-kb-6c495c9bc4-csjs8   1/1     Running   0          112s
 ```
 
 <br/>
@@ -123,7 +137,14 @@ $ kubectl get secret elastic-es-elastic-user -n elastic -o go-template='{{.data.
 <br/>
 
 ```
-$ kubectl get svc -n elastic
+$ kubectkubectl get svc -n elastic
+NAME                       TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+elastic-es-default         ClusterIP      None             <none>        9200/TCP         2m27s
+elastic-es-http            ClusterIP      10.103.158.32    <none>        9200/TCP         2m28s
+elastic-es-internal-http   ClusterIP      10.108.67.218    <none>        9200/TCP         2m28s
+elastic-es-transport       ClusterIP      None             <none>        9300/TCP         2m28s
+elastic-operator-webhook   ClusterIP      10.108.238.36    <none>        443/TCP          4m31s
+kibana-kb-http             LoadBalancer   10.106.211.252   <pending>     5601:31328/TCP   2m23s
 ```
 
 

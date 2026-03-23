@@ -14,7 +14,7 @@ imagePullSecrets:
   - name: registry-credentials
 
 server:
-  workers: 2
+  workers: 1
   node:
     environment: production
     dataDir: /data/trino
@@ -257,11 +257,18 @@ secretMounts: []
 
 coordinator:
   jvm:
-    maxHeapSize: "8G"
+    maxHeapSize: "2G"
     gcMethod:
       type: "UseG1GC"
       g1:
         heapRegionSize: "32M"
+  resources:
+    requests:
+      memory: "2Gi"
+      cpu: "1"
+    limits:
+      memory: "2Gi"
+      cpu: "2"
 
   config:
     memory:
@@ -326,11 +333,18 @@ coordinator:
 
 worker:
   jvm:
-    maxHeapSize: "8G"
+    maxHeapSize: "2G"
     gcMethod:
       type: "UseG1GC"
       g1:
         heapRegionSize: "32M"
+  resources:
+    requests:
+      memory: "2Gi"
+      cpu: "1"
+    limits:
+      memory: "2Gi"
+      cpu: "2"
 
   config:
     memory:

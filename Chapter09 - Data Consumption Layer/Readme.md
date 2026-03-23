@@ -48,7 +48,23 @@ trino   LoadBalancer   10.109.226.94   192.168.49.20   8080:31473/TCP   13m
 
 Dbeaver создать новое соединение с типом trino, скачать драйвера и подключиться.
 
-У меня крашится при попытке посмотреть структуру таблиц в minikube и kind.
+
+
+```
+SQL> select * from hive."bdok-database".titanic
+```
+
+
+```
+SQL> select
+    pclass,
+    sex, COUNT(1) as people_count,
+    AVG(age) as avg_age
+from hive."bdok-database".titanic
+group by pclass, sex
+order by sex, pclass
+```
+
 
 <br/>
 

@@ -1,6 +1,6 @@
 # Chapter 09 - Data Consumption Layer
 
-### Deploying Trino in Kubernetes
+### [FAIL!] Deploying Trino in Kubernetes
 
 <br/>
 
@@ -77,7 +77,7 @@ order by sex, pclass
 
 <br/>
 
-#### Deploying Elasticsearch in Kubernetes
+#### [FAIL!] Deploying Elasticsearch in Kubernetes
 
 <br/>
 

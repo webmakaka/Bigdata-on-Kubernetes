@@ -48,6 +48,10 @@ trino   LoadBalancer   10.109.226.94   192.168.49.20   8080:31473/TCP   13m
 
 Dbeaver создать новое соединение с типом trino, скачать драйвера и подключиться.
 
+<img src="../img/chapter09-pic01.png">
+
+
+Download the dataset from https://github.com/neylsoncrepalde/titanic_data_with_semicolon and store the CSV file in an S3 bucket inside a folder named titanic.
 
 
 ```

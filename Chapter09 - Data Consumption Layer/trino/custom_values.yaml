@@ -184,10 +184,12 @@ additionalExchangeManagerProperties: {}
 
 eventListenerProperties: {}
 
-additionalCatalogs:
-  hive: |
-    connector.name=hive
-    hive.metastore=glue
+# additionalCatalogs:
+#   hive: |
+#     connector.name=hive
+#     hive.metastore=glue
+
+additionalCatalogs: {}
 
 # Array of EnvVar (https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#envvar-v1-core)
 env: []
@@ -262,7 +264,7 @@ coordinator:
       type: "UseG1GC"
       g1:
         heapRegionSize: "32M"
-        
+
   config:
     memory:
       heapHeadroomPerNode: ""
@@ -274,11 +276,11 @@ coordinator:
   additionalExposedPorts: {}
 
   resources:
-      requests:
-      memory: "2Gi"
+    requests:
+      memory: "1Gi"
       cpu: "1"
     limits:
-      memory: "2Gi"
+      memory: "3Gi"
       cpu: "2"
 
   livenessProbe: {}
@@ -340,10 +342,10 @@ worker:
 
   resources:
     requests:
-      memory: "2Gi"
+      memory: "1Gi"
       cpu: "1"
     limits:
-      memory: "2Gi"
+      memory: "3Gi"
       cpu: "2"
 
   livenessProbe: {}

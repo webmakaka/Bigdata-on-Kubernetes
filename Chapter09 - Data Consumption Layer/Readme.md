@@ -82,14 +82,18 @@ order by sex, pclass
 <br/>
 
 ```
-$ helm repo add elastic https://helm.elastic.co
+// $ helm repo add elastic https://helm.elastic.co
 ```
 
 <br/>
 
 ```
-$ helm install elastic-operator elastic/eck-operator -n elastic --create-namespace --version 2.12.1
+// $ helm install elastic-operator elastic/eck-operator -n elastic --create-namespace --version 2.12.1
 ```
+
+<br/>
+
+https://artifacthub.io/packages/helm/elastic/eck-operator/2.12.1
 
 <br/>
 

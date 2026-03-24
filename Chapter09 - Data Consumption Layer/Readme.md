@@ -2,6 +2,16 @@
 
 ### [FAIL!] Deploying Trino in Kubernetes
 
+
+```
+$ helm repo add bigdata-gradiant https://gradiant.github.io/bigdata-charts/
+```
+
+```
+// $ helm uninstall hive-metastore -n trino 
+$ helm install hive-metastore bigdata-gradiant/hive-metastore -f hms-values.yaml -n trino --create-namespace
+```
+
 <br/>
 
 ```
@@ -25,10 +35,6 @@ $ helm install trino trino/trino -f custom_values.yaml -n trino --create-namespa
 
 ```
 $ kubectl get pods -n trino
-NAME                                READY   STATUS    RESTARTS   AGE
-trino-coordinator-5864b8497-xvb4h   1/1     Running   0          3m36s
-trino-worker-6dcf5978d5-dcwjc       1/1     Running   0          3m36s
-trino-worker-6dcf5978d5-zl87k       1/1     Running   0          3m36s
 ```
 
 <br/>

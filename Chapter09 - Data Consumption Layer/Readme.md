@@ -143,6 +143,14 @@ kibana.kibana.k8s.elastic.co/kibana   green    1       8.13.0    16m
 <br/>
 
 ```
+$ kubectl get elasticsearch -n elastic
+NAME      HEALTH   NODES   VERSION   PHASE   AGE
+elastic   red      2       8.13.0    Ready   10m
+```
+
+<br/>
+
+```
 $ kubectl describe elastic -n elastic
 ```
 

@@ -77,7 +77,7 @@ order by sex, pclass
 
 <br/>
 
-#### [FAIL!] Deploying Elasticsearch in Kubernetes
+#### [OK!] Deploying Elasticsearch in Kubernetes
 
 <br/>
 
@@ -122,30 +122,18 @@ $ kubectl apply -f kibana.yaml -n elastic
 
 ```
 $ kubectl get pods -n elastic
-NAME                         READY   STATUS    RESTARTS   AGE
-elastic-es-default-0         0/1     Pending   0          115s
-elastic-es-default-1         0/1     Pending   0          115s
-elastic-operator-0           1/1     Running   0          4m
-kibana-kb-6c495c9bc4-csjs8   1/1     Running   0          112s
 ```
 
 <br/>
 
 ```
 $ kubectl get elastic -n elastic
-NAME                                                 HEALTH    NODES   VERSION   PHASE             AGE
-elasticsearch.elasticsearch.k8s.elastic.co/elastic   unknown   1       8.13.0    ApplyingChanges   7m16s
-
-NAME                                  HEALTH   NODES   VERSION   AGE
-kibana.kibana.k8s.elastic.co/kibana   green    1       8.13.0    16m
 ```
 
 <br/>
 
 ```
 $ kubectl get elasticsearch -n elastic
-NAME      HEALTH   NODES   VERSION   PHASE   AGE
-elastic   red      2       8.13.0    Ready   10m
 ```
 
 <br/>
@@ -160,18 +148,10 @@ $ kubectl describe elastic -n elastic
 $ kubectl get secret elastic-es-elastic-user -n elastic -o go-template='{{.data.elastic | base64decode}}'
 ```
 
-
 <br/>
 
 ```
 $ kubectl get svc -n elastic
-NAME                       TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)          AGE
-elastic-es-default         ClusterIP      None             <none>          9200/TCP         9m22s
-elastic-es-http            ClusterIP      10.110.219.135   <none>          9200/TCP         9m24s
-elastic-es-internal-http   ClusterIP      10.111.199.232   <none>          9200/TCP         9m24s
-elastic-es-transport       ClusterIP      None             <none>          9300/TCP         9m24s
-elastic-operator-webhook   ClusterIP      10.108.238.36    <none>          443/TCP          20m
-kibana-kb-http             LoadBalancer   10.106.211.252   192.168.49.20   5601:31328/TCP   18m
 ```
 
 <br/>
@@ -181,6 +161,28 @@ kibana-kb-http             LoadBalancer   10.106.211.252   192.168.49.20   5601:
 // elastic / 
 https://192.168.49.20:5601
 ```
+
+KIBANA 
+
+--> Explore on my own
+
+Data Views
+
+https://192.168.49.20:5601/app/management/kibana/dataViews
+
+Upload a file
+
+https://github.com/neylsoncrepalde/titanic_data_with_semicolon
+
+
+
+
+
+
+
+
+Dashboards -> Create a dashboard -> Create visualization.
+
 
 
 <br/><br/>

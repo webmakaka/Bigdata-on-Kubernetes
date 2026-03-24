@@ -81,6 +81,17 @@ order by sex, pclass
 
 <br/>
 
+https://artifacthub.io/packages/helm/elastic/eck-operator/2.12.1
+
+<br/>
+
+```
+// Install elasticsearch operator
+$ cd Chapter09
+```
+
+<br/>
+
 ```
 // $ helm repo add elastic https://helm.elastic.co
 ```
@@ -98,16 +109,6 @@ order by sex, pclass
 $ helm install elastic-operator ./eck-operator-2.12.1/eck-operator -n elastic --create-namespace
 ```
 
-<br/>
-
-https://artifacthub.io/packages/helm/elastic/eck-operator/2.12.1
-
-<br/>
-
-```
-// Install elasticsearch operator
-$ /home/marley/projects/dev/python/big_data/Bigdata-on-Kubernetes/Chapter09/elasticsearch
-```
 
 <br/>
 

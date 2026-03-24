@@ -7,7 +7,7 @@ spec:
   volumeClaimDeletePolicy: DeleteOnScaledownAndClusterDeletion # or DeleteOnScaledownOnly
   nodeSets:
   - name: default
-    count: 2
+    count: 1
     podTemplate:
       spec:
         containers:
@@ -32,5 +32,5 @@ spec:
         - ReadWriteOnce
         resources:
           requests:
-            storage: 5Gi
-        storageClassName: gp2
+            storage: 20Gi
+        storageClassName: standard

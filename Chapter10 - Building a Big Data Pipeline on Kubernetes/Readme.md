@@ -38,5 +38,6 @@ $ kubectl apply -f ./airflow_deployment/rolebinding_for_airflow.yaml
 ```
 
 ```
+// $ helm uninstall airflow --namespace airflow 
 $ helm install airflow apache-airflow/airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml
 ```

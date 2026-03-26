@@ -37,11 +37,11 @@ Download the dataset from https://github.com/neylsoncrepalde/titanic_data_with_s
 
 
 ```sql
-CREATE SCHEMA minio.lakehouse
+SQL> CREATE SCHEMA minio.lakehouse
 WITH (location = 's3a://titanic/');
 
 -- DROP TABLE minio.lakehouse.titanic
-CREATE TABLE minio.lakehouse.titanic (
+SQL> CREATE TABLE minio.lakehouse.titanic (
     passenger_id VARCHAR,
     survived VARCHAR,
     pclass VARCHAR,
@@ -62,9 +62,7 @@ WITH (
     skip_header_line_count = 1
 );
 
-
 SQL> select * from minio.lakehouse.titanic
-
 
 SQL> SELECT
   pclass,

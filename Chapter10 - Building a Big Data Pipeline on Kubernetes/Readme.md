@@ -9,6 +9,9 @@
 
 <br/>
 
+
+**Trino**
+
 ```
 $ kubectl get pods -n trino
 NAME                                 READY   STATUS    RESTARTS   AGE
@@ -20,5 +23,14 @@ trino-worker-9b6b9f57-bw8nh          1/1     Running   0          16m
 <br/>
 
 ```
-$ helm install airflow apache-airflow/airflow --namespace airflow --create-namespace -f custom_values.yaml
+gitSync:
+***
+    repo: https://github.com/webmakaka/Bigdata-on-Kubernetes.git
+***
+    subPath: "Chapter10%20-%20Building%20a%20Big%20Data%20Pipeline%20on%20Kubernetes/batch/dags"
+***
+```
+
+```
+$ helm install airflow apache-airflow/airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml
 ```

@@ -1,55 +1,21 @@
 # Chapter 09 - Data Consumption Layer
 
-### [FAIL!] Deploying Trino in Kubernetes
+### [OK!] Deploying Trino in Kubernetes
+
+
+По доке:
+
+https://github.com/webmakaka/data-platform-notes/tree/main/trino
+
+Выполняем:
+
+* Install Minio on Kubernetes
+* Install Hive Metastore
+* Install Trino
 
 
 ```
-$ helm repo add bigdata-gradiant https://gradiant.github.io/bigdata-charts/
-```
-
-```
-// $ helm uninstall hive-metastore -n trino 
-$ helm install hive-metastore bigdata-gradiant/hive-metastore -f hms-values.yaml -n trino --create-namespace
-```
-
-<br/>
-
-```
-$ helm repo add trino https://trinodb.github.io/charts
-```
-
-<br/>
-
-```
-$ cd Bigdata-on-Kubernetes/Chapter09/trino
-```
-
-<br/>
-
-```
-// $ helm uninstall trino -n trino
-$ helm install trino trino/trino -f custom_values.yaml -n trino --create-namespace --version 0.19.0
-```
-
-<br/>
-
-```
-$ kubectl get pods -n trino
-```
-
-<br/>
-
-```
-$ kubectl get svc -n trino
-NAME    TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
-trino   LoadBalancer   10.109.226.94   192.168.49.20   8080:31473/TCP   13m
-```
-
-<br/>
-
-```
-// trino
-192.168.49.20:8080
+$ kubectl port-forward pod/trino-coordinator-57cc8c466f-hx98k 8080:8080
 ```
 
 Dbeaver создать новое соединение с типом trino, скачать драйвера и подключиться.
@@ -65,20 +31,50 @@ Dbeaver создать новое соединение с типом trino, ск
 Download the dataset from https://github.com/neylsoncrepalde/titanic_data_with_semicolon and store the CSV file in an S3 bucket inside a folder named titanic.
 
 
-```
-SQL> select * from hive."bdok-database".titanic
-```
+```sql
+CREATE SCHEMA minio.lakehouse
+WITH (location = 's3a://titanic/');
+
+-- DROP TABLE minio.lakehouse.titanic
+CREATE TABLE minio.lakehouse.titanic (
+    passenger_id VARCHAR,
+    survived VARCHAR,
+    pclass VARCHAR,
+    name VARCHAR,
+    sex VARCHAR,
+    age VARCHAR,
+    sibsp VARCHAR,
+    parch VARCHAR,
+    ticket VARCHAR,
+    fare VARCHAR,
+    cabin VARCHAR,
+    embarked VARCHAR
+)
+WITH (
+    format = 'CSV',
+    external_location = 's3a://titanic/',
+    csv_separator = ';',
+    skip_header_line_count = 1
+);
 
 
+SQL> select * from minio.lakehouse.titanic
+
+
+SQL> SELECT
+  pclass,
+  sex,
+  COUNT(1) AS people_count,
+  AVG(CAST(nullif(age, '') AS DOUBLE)) AS avg_age
+FROM minio.lakehouse.titanic
+GROUP BY pclass, sex
+ORDER BY sex, pclass;
 ```
-SQL> select
-    pclass,
-    sex, COUNT(1) as people_count,
-    AVG(age) as avg_age
-from hive."bdok-database".titanic
-group by pclass, sex
-order by sex, pclass
-```
+
+<img src="../img/chapter09-pic03.png">
+
+
+<img src="../img/chapter09-pic04.png">
 
 
 <br/>

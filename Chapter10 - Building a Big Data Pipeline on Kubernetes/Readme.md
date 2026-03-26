@@ -29,7 +29,7 @@ gitSync:
 ***
     repo: https://github.com/webmakaka/Bigdata-on-Kubernetes.git
 ***
-    subPath: "Chapter10%20-%20Building%20a%20Big%20Data%20Pipeline%20on%20Kubernetes/batch/dags"
+    subPath: "Chapter10 - Building a Big Data Pipeline on Kubernetes/batch/dags"
 ***
 ```
 

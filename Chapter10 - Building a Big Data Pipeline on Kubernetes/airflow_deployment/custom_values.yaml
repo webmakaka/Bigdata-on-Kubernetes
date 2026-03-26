@@ -2456,7 +2456,7 @@ dags:
     maxFailures: 0
     # subpath within the repo where dags are located
     # should be "" if dags are at repo root
-    subPath: "Chapter10%20-%20Building%20a%20Big%20Data%20Pipeline%20on%20Kubernetes/batch/dags"
+    subPath: "Chapter10 - Building a Big Data Pipeline on Kubernetes/batch/dags"
     # if your repo needs a user name password
     # you can load them to a k8s secret like the one below
     #   ---

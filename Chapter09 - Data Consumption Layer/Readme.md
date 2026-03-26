@@ -31,6 +31,9 @@ Dbeaver создать новое соединение с типом trino, ск
 Download the dataset from https://github.com/neylsoncrepalde/titanic_data_with_semicolon and store the CSV file in an S3 bucket inside a folder named titanic.
 
 
+<img src="../img/chapter09-pic05.png">
+
+
 ```sql
 CREATE SCHEMA minio.lakehouse
 WITH (location = 's3a://titanic/');
@@ -177,15 +180,15 @@ Upload a file
 https://github.com/neylsoncrepalde/titanic_data_with_semicolon
 
 
+<img src="../img/chapter09-pic06.png">
 
-
-
+<img src="../img/chapter09-pic07.png">
 
 
 
 Dashboards -> Create a dashboard -> Create visualization.
 
-
+<img src="../img/chapter09-pic08.png">
 
 <br/><br/>
 

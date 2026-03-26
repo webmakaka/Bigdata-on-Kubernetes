@@ -5,7 +5,7 @@
 * Minio
 * Hive Metastore
 * Trino
-* Ariflow
+* AirFlow
 
 <br/>
 
@@ -22,6 +22,8 @@ trino-worker-9b6b9f57-bw8nh          1/1     Running   0          16m
 
 <br/>
 
+**AirFlow**
+
 ```
 gitSync:
 ***
@@ -29,6 +31,10 @@ gitSync:
 ***
     subPath: "Chapter10%20-%20Building%20a%20Big%20Data%20Pipeline%20on%20Kubernetes/batch/dags"
 ***
+```
+
+```
+$ kubectl apply -f ./airflow_deployment/rolebinding_for_airflow.yaml 
 ```
 
 ```

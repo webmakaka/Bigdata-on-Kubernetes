@@ -22,6 +22,8 @@ Dbeaver создать новое соединение с типом trino, ск
 
 <br/>
 
+Только localhost, а не указанный IP
+
 <img src="../img/chapter09-pic01.png">
 
 <img src="../img/chapter09-pic02.png">

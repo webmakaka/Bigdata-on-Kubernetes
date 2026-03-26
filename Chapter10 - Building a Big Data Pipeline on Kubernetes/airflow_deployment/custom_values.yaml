@@ -637,7 +637,7 @@ workers:
     securityContexts:
       container: {}
     # container level lifecycle hooks
-    containerLifecycleHooks: {}
+    # containerLifecycleHooks: {}
 
   kerberosSidecar:
     # Enable kerberos sidecar

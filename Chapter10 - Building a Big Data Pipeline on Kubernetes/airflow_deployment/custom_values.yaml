@@ -2463,7 +2463,7 @@ dags:
     # git repo clone url
     # ssh example: git@github.com:apache/airflow.git
     # https example: https://github.com/apache/airflow.git
-    repo: https://github.com/PacktPublishing/Bigdata-on-Kubernetes.git
+    repo: https://github.com/webmakaka/Bigdata-on-Kubernetes.git
     branch: main
     rev: HEAD
     # The git revision (branch, tag, or hash) to check out, v4 only
@@ -2473,7 +2473,7 @@ dags:
     maxFailures: 0
     # subpath within the repo where dags are located
     # should be "" if dags are at repo root
-    subPath: "Chapter 10/batch/dags"
+    subPath: "Chapter10%20-%20Building%20a%20Big%20Data%20Pipeline%20on%20Kubernetes/batch/dags"
     # if your repo needs a user name password
     # you can load them to a k8s secret like the one below
     #   ---

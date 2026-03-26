@@ -184,6 +184,7 @@ additionalExchangeManagerProperties: {}
 
 eventListenerProperties: {}
 
+# TODO: Требуется исправить на корректные
 additionalCatalogs:
   hive: |
     connector.name=hive

@@ -6,6 +6,7 @@
 * Hive Metastore
 * Trino
 * AirFlow
+* Spark
 
 <br/>
 

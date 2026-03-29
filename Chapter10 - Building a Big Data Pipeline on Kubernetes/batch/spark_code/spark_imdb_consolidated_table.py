@@ -16,7 +16,6 @@ conf = (
 
 # apply config
 sc = SparkContext(conf=conf).getOrCreate()
-    
 
 if __name__ == "__main__":
 
@@ -29,11 +28,11 @@ if __name__ == "__main__":
     spark.sparkContext.setLogLevel("WARN")
 
     # Reading the tables from bronze zone
-    names = spark.read.parquet("s3a://bdok-539445819060/bronze/imdb/names")
-    basics = spark.read.parquet("s3a://bdok-539445819060/bronze/imdb/basics")
-    crew = spark.read.parquet("s3a://bdok-539445819060/bronze/imdb/crew")
-    principals = spark.read.parquet("s3a://bdok-539445819060/bronze/imdb/principals")
-    ratings = spark.read.parquet("s3a://bdok-539445819060/bronze/imdb/ratings")
+    names = spark.read.parquet("s3a://imdb-processed/bronze/imdb/names")
+    basics = spark.read.parquet("s3a://imdb-processed/bronze/imdb/basics")
+    crew = spark.read.parquet("s3a://imdb-processed/bronze/imdb/crew")
+    principals = spark.read.parquet("s3a://imdb-processed/bronze/imdb/principals")
+    ratings = spark.read.parquet("s3a://imdb-processed/bronze/imdb/ratings")
 
     # Exploding knownForTitles
     names = names.select(
@@ -65,6 +64,6 @@ if __name__ == "__main__":
     basics_principals_directors = basics_principals.join(directors, on=['tconst'], how='inner').dropDuplicates()
 
     # Write the results to silver zone
-    basics_principals_directors.write.mode("overwrite").parquet("s3a://bdok-539445819060/silver/imdb/consolidated")
+    basics_principals_directors.write.mode("overwrite").parquet("s3a://imdb-processed/silver/imdb/consolidated")
 
     spark.stop()

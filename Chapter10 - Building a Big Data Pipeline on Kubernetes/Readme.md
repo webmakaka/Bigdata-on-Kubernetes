@@ -15,7 +15,7 @@
 **Mini**
 
 ```
-Crete bucket: imdb-datasets, airflow-logs, spark-jobs
+Crete bucket: imdb-datasets, airflow-logs, spark-jobs, imdb-processed
 ```
 
 <br/>

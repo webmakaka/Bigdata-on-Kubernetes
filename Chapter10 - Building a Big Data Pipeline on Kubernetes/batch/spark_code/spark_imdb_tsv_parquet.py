@@ -15,7 +15,6 @@ conf = (
 
 # apply config
 sc = SparkContext(conf=conf).getOrCreate()
-    
 
 if __name__ == "__main__":
 
@@ -43,7 +42,7 @@ if __name__ == "__main__":
         .read
         .schema(schema_names)
         .options(header=True, delimiter="\t")
-        .csv('s3a://bdok-539445819060/landing/imdb/names.tsv.gz')
+        .csv('s3a://imdb-processed/landing/imdb/names.tsv.gz')
     )
 
     basics = (
@@ -51,7 +50,7 @@ if __name__ == "__main__":
         .read
         .schema(schema_basics)
         .options(header=True, delimiter="\t")
-        .csv('s3a://bdok-539445819060/landing/imdb/basics.tsv.gz')
+        .csv('s3a://imdb-processed/landing/imdb/basics.tsv.gz')
     )
 
     crew = (
@@ -59,7 +58,7 @@ if __name__ == "__main__":
         .read
         .schema(schema_crew)
         .options(header=True, delimiter="\t")
-        .csv('s3a://bdok-539445819060/landing/imdb/crew.tsv.gz')
+        .csv('s3a://imdb-processed/landing/imdb/crew.tsv.gz')
     )
 
     principals = (
@@ -67,7 +66,7 @@ if __name__ == "__main__":
         .read
         .schema(schema_principals)
         .options(header=True, delimiter="\t")
-        .csv('s3a://bdok-539445819060/landing/imdb/principals.tsv.gz')
+        .csv('s3a://imdb-processed/landing/imdb/principals.tsv.gz')
     )
 
     ratings = (
@@ -75,14 +74,14 @@ if __name__ == "__main__":
         .read
         .schema(schema_ratings)
         .options(header=True, delimiter="\t")
-        .csv('s3a://bdok-539445819060/landing/imdb/ratings.tsv.gz')
+        .csv('s3a://imdb-processed/landing/imdb/ratings.tsv.gz')
     )
 
     # Write tables in S3 in parquet
-    names.write.mode("overwrite").parquet("s3a://bdok-539445819060/bronze/imdb/names")
-    basics.write.mode("overwrite").parquet("s3a://bdok-539445819060/bronze/imdb/basics")
-    crew.write.mode("overwrite").parquet("s3a://bdok-539445819060/bronze/imdb/crew")
-    principals.write.mode("overwrite").parquet("s3a://bdok-539445819060/bronze/imdb/principals")
-    ratings.write.mode("overwrite").parquet("s3a://bdok-539445819060/bronze/imdb/ratings")
+    names.write.mode("overwrite").parquet("s3a://imdb-processed/bronze/imdb/names")
+    basics.write.mode("overwrite").parquet("s3a://imdb-processed/bronze/imdb/basics")
+    crew.write.mode("overwrite").parquet("s3a://imdb-processed/bronze/imdb/crew")
+    principals.write.mode("overwrite").parquet("s3a://imdb-processed/bronze/imdb/principals")
+    ratings.write.mode("overwrite").parquet("s3a://imdb-processed/bronze/imdb/ratings")
 
     spark.stop()

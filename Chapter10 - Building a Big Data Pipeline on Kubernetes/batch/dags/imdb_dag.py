@@ -61,16 +61,16 @@ def IMDB_batch():
 
     with TaskGroup("tsvs_to_parquet") as tsv_parquet:
 
-        DAG_FOLDER = os.path.dirname(os.path.abspath(__file__))
-        yaml_path = os.path.join(DAG_FOLDER, "spark_imdb_tsv_parquet.yaml")
+        #DAG_FOLDER = os.path.dirname(os.path.abspath(__file__))
+        #yaml_path = os.path.join(DAG_FOLDER, "spark_imdb_tsv_parquet.yaml")
         
         tsvs_to_parquet = SparkKubernetesOperator(
             task_id="tsvs_to_parquet",
             #namespace="airflow",
             namespace="spark-operator",
             #application_file=open(f"{APP_FILES_PATH}/spark_imdb_tsv_parquet.yaml").read(),
-            #application_file="spark_imdb_tsv_parquet.yaml",
-            application_file=open(yaml_path).read(),
+            application_file="spark_imdb_tsv_parquet.yaml",
+            # application_file=open(yaml_path).read(),
             kubernetes_conn_id="kubernetes_default",
             do_xcom_push=True
         )

@@ -77,30 +77,30 @@ def IMDB_batch():
         tsvs_to_parquet >> tsvs_to_parquet_sensor
     
 
-    with TaskGroup('Transformations') as transformations:
-        consolidated_table = SparkKubernetesOperator(
-            task_id='consolidated_table',
-            namespace="airflow",
-            application_file="spark_imdb_consolidated_table.yaml",
-            kubernetes_conn_id="kubernetes_default",
-            do_xcom_push=True
-        )
-        consolidated_table_sensor = SparkKubernetesSensor(
-            task_id='consolidated_table_sensor',
-            namespace="airflow",
-            application_name="{{ task_instance.xcom_pull(task_ids='Transformations.consolidated_table')['metadata']['name'] }}",
-            kubernetes_conn_id="kubernetes_default"
-        )
-        consolidated_table >> consolidated_table_sensor
+    # with TaskGroup('Transformations') as transformations:
+    #     consolidated_table = SparkKubernetesOperator(
+    #         task_id='consolidated_table',
+    #         namespace="airflow",
+    #         application_file="spark_imdb_consolidated_table.yaml",
+    #         kubernetes_conn_id="kubernetes_default",
+    #         do_xcom_push=True
+    #     )
+    #     consolidated_table_sensor = SparkKubernetesSensor(
+    #         task_id='consolidated_table_sensor',
+    #         namespace="airflow",
+    #         application_name="{{ task_instance.xcom_pull(task_ids='Transformations.consolidated_table')['metadata']['name'] }}",
+    #         kubernetes_conn_id="kubernetes_default"
+    #     )
+    #     consolidated_table >> consolidated_table_sensor
 
 
-    glue_crawler_consolidated = GlueCrawlerOperator(
-        task_id='glue_crawler_consolidated',
-        region_name='us-east-1',
-        aws_conn_id='aws_conn',
-        wait_for_completion=True,
-        config = {'Name': 'imdb_consolidated_crawler'}
-    )
+    # glue_crawler_consolidated = GlueCrawlerOperator(
+    #     task_id='glue_crawler_consolidated',
+    #     region_name='us-east-1',
+    #     aws_conn_id='aws_conn',
+    #     wait_for_completion=True,
+    #     config = {'Name': 'imdb_consolidated_crawler'}
+    # )
 
     
     # Orchestration

@@ -12,6 +12,12 @@
 
 <br/>
 
+**Mini**
+
+```
+Crete bucket: imdb-datasets, airflow-logs
+```
+
 
 **Trino**
 
@@ -59,7 +65,7 @@ $ helm install airflow --namespace airflow --create-namespace -f airflow_deploym
 <br/>
 
 ```
-$ kubeclt port-forward airflow-webserver-54d4f4fb44-rfdpp -n airflow
+$ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow
 ```
 
 <br/>

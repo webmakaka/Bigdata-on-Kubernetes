@@ -2,6 +2,8 @@
 
 ### Checking the deployed tools
 
+<br/>
+
 * Minio
 * Hive Metastore
 * Trino
@@ -34,12 +36,17 @@ gitSync:
 ***
 ```
 
+<br/>
+
 ```
-$ kubectl apply -f ./airflow_deployment/rolebinding_for_airflow.yaml 
+// Roles
+$ kubectl apply -f ./airflow_deployment/rolebinding_for_airflow.yaml
 ```
 
+<br/>
+
 ```bash
-// $ helm uninstall airflow --namespace airflow 
+// $ helm uninstall airflow --namespace airflow
 // $ helm install airflow apache-airflow/airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml --version 1.13.1
 ```
 

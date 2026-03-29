@@ -10,12 +10,12 @@ import boto3
 
 import os
 
-aws_access_key_id=Variable.get("aws_access_key_id")
-aws_secret_access_key=Variable.get("aws_secret_access_key")
+# aws_access_key_id=Variable.get("aws_access_key_id")
+# aws_secret_access_key=Variable.get("aws_secret_access_key")
 
 minio_url='http://minio.minio.svc.cluster.local:9000'
-#aws_access_key_id='admin'
-#aws_secret_access_key='password'
+aws_access_key_id='admin'
+aws_secret_access_key='password'
 
 s3 = boto3.client('s3',
     endpoint_url=minio_url,
@@ -37,68 +37,63 @@ default_args = {
 )
 def IMDB_batch():
 
-    @task
-    def data_acquisition():
-        #urls_dict = {
-        #    "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz",
-        #    "basics.tsv.gz": "https://datasets.imdbws.com/title.basics.tsv.gz",
-        #    "crew.tsv.gz": "https://datasets.imdbws.com/title.crew.tsv.gz",
-        #    "principals.tsv.gz": "https://datasets.imdbws.com/title.principals.tsv.gz",
-        #    "ratings.tsv.gz": "https://datasets.imdbws.com/title.ratings.tsv.gz"
-        #}
-        urls_dict = {
-            "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz"
-        }
+    # @task
+    # def data_acquisition():
+    #     #urls_dict = {
+    #     #    "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz",
+    #     #    "basics.tsv.gz": "https://datasets.imdbws.com/title.basics.tsv.gz",
+    #     #    "crew.tsv.gz": "https://datasets.imdbws.com/title.crew.tsv.gz",
+    #     #    "principals.tsv.gz": "https://datasets.imdbws.com/title.principals.tsv.gz",
+    #     #    "ratings.tsv.gz": "https://datasets.imdbws.com/title.ratings.tsv.gz"
+    #     #}
+    #     urls_dict = {
+    #         "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz"
+    #     }
 
-        for title, url in urls_dict.items():
-            response = requests.get(url, stream=True)
-            with open(f"/tmp/{title}", mode="wb") as file:
-                file.write(response.content)
-            s3.upload_file(f"/tmp/{title}", "imdb-datasets", f"landing/imdb/{title}")
+    #     for title, url in urls_dict.items():
+    #         response = requests.get(url, stream=True)
+    #         with open(f"/tmp/{title}", mode="wb") as file:
+    #             file.write(response.content)
+    #         s3.upload_file(f"/tmp/{title}", "imdb-datasets", f"landing/imdb/{title}")
         
-        return True
+    #     return True
     
 
-    with TaskGroup("tsvs_to_parquet") as tsv_parquet:
+    # with TaskGroup("tsvs_to_parquet") as tsv_parquet:
 
-        #DAG_FOLDER = os.path.dirname(os.path.abspath(__file__))
-        #yaml_path = os.path.join(DAG_FOLDER, "spark_imdb_tsv_parquet.yaml")
-        
-        tsvs_to_parquet = SparkKubernetesOperator(
-            task_id="tsvs_to_parquet",
-            #namespace="airflow",
-            namespace="spark-operator",
-            #application_file=open(f"{APP_FILES_PATH}/spark_imdb_tsv_parquet.yaml").read(),
-            application_file="spark_imdb_tsv_parquet.yaml",
-            # application_file=open(yaml_path).read(),
-            kubernetes_conn_id="kubernetes_default",
-            do_xcom_push=True
-        )
-        tsvs_to_parquet_sensor = SparkKubernetesSensor(
-            task_id="tsvs_to_parquet_sensor",
-            #namespace="airflow",
-            namespace="spark-operator",
-            application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet.tsvs_to_parquet')['metadata']['name'] }}",
-            kubernetes_conn_id="kubernetes_default"
-        )
-        tsvs_to_parquet >> tsvs_to_parquet_sensor
-    
-
-    # with TaskGroup('Transformations') as transformations:
-    #     consolidated_table = SparkKubernetesOperator(
-    #         task_id='consolidated_table',
-    #         namespace="airflow",
-    #         application_file="spark_imdb_consolidated_table.yaml",
+    #     tsvs_to_parquet = SparkKubernetesOperator(
+    #         task_id="tsvs_to_parquet",
+    #         namespace="spark-operator",
+    #         application_file="spark_imdb_tsv_parquet.yaml",
     #         kubernetes_conn_id="kubernetes_default",
     #         do_xcom_push=True
     #     )
-    #     consolidated_table_sensor = SparkKubernetesSensor(
-    #         task_id='consolidated_table_sensor',
-    #         namespace="airflow",
-    #         application_name="{{ task_instance.xcom_pull(task_ids='Transformations.consolidated_table')['metadata']['name'] }}",
+    #     tsvs_to_parquet_sensor = SparkKubernetesSensor(
+    #         task_id="tsvs_to_parquet_sensor",
+    #         namespace="spark-operator",
+    #         application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet.tsvs_to_parquet')['metadata']['name'] }}",
     #         kubernetes_conn_id="kubernetes_default"
     #     )
-    #     consolidated_table >> consolidated_table_sensor
+    #     tsvs_to_parquet >> tsvs_to_parquet_sensor
+    
+
+    with TaskGroup('Transformations') as transformations:
+        consolidated_table = SparkKubernetesOperator(
+            task_id='consolidated_table',
+            namespace="spark-operator",
+            #namespace="airflow",
+            application_file="spark_imdb_consolidated_table.yaml",
+            kubernetes_conn_id="kubernetes_default",
+            do_xcom_push=True
+        )
+        consolidated_table_sensor = SparkKubernetesSensor(
+            task_id='consolidated_table_sensor',
+            namespace="spark-operator",
+            #namespace="airflow",
+            application_name="{{ task_instance.xcom_pull(task_ids='Transformations.consolidated_table')['metadata']['name'] }}",
+            kubernetes_conn_id="kubernetes_default"
+        )
+        consolidated_table >> consolidated_table_sensor
 
 
     # glue_crawler_consolidated = GlueCrawlerOperator(
@@ -111,8 +106,9 @@ def IMDB_batch():
 
     
     # Orchestration
-    da = data_acquisition() 
+    #da = data_acquisition() 
     #da >> tsv_parquet >> transformations >> glue_crawler_consolidated
-    da >> tsv_parquet
+    # da >> tsv_parquet
+    transformations
 
 execution = IMDB_batch()

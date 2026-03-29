@@ -134,6 +134,9 @@ http://localhost:8080/
 
 7 минут выполняется tsvs_to_parquet с максимально отключенными дополнительными действиями.
 
+<br/>
+
+В AWS Glue Crawler делает две вещи: сканирует S3 и обновляет метаданные в Glue Data Catalog. В стеке Minikube + MinIO + Hive Metastore + Trino роль «каталога» выполняет Hive Metastore (HMS), а роль движка для запросов — Trino.
 
 <br/>
 

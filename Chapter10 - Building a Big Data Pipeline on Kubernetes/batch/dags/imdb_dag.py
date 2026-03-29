@@ -10,12 +10,12 @@ import boto3
 
 import os
 
-# aws_access_key_id=Variable.get("aws_access_key_id")
-# aws_secret_access_key=Variable.get("aws_secret_access_key")
+aws_access_key_id=Variable.get("aws_access_key_id")
+aws_secret_access_key=Variable.get("aws_secret_access_key")
 
 minio_url='http://minio.minio.svc.cluster.local:9000'
-aws_access_key_id='admin'
-aws_secret_access_key='password'
+#aws_access_key_id='admin'
+#aws_secret_access_key='password'
 
 s3 = boto3.client('s3',
     endpoint_url=minio_url,

@@ -12,7 +12,7 @@
 
 <br/>
 
-**Mini**
+**Minio**
 
 ```
 Crete bucket: imdb-datasets, airflow-logs, spark-jobs
@@ -20,15 +20,13 @@ Crete bucket: imdb-datasets, airflow-logs, spark-jobs
 
 <br/>
 
-**Trino**
+Загружаю файлы из spark_code:
 
-```
-$ kubectl get pods -n trino
-NAME                                 READY   STATUS    RESTARTS   AGE
-trino-coordinator-57cc8c466f-7wchh   1/1     Running   0          16m
-trino-worker-9b6b9f57-7p7gx          1/1     Running   0          16m
-trino-worker-9b6b9f57-bw8nh          1/1     Running   0          16m
-```
+spark_imdb_consolidated_table.py
+spark_imdb_tsv_parquet.py
+
+в s3a://spark-jobs/
+
 
 <br/>
 
@@ -43,12 +41,6 @@ gitSync:
 ***
 ```
 
-<br/>
-
-```
-// Roles
-$ kubectl apply -f ./airflow_deployment/rolebinding_for_airflow.yaml
-```
 
 <br/>
 
@@ -66,6 +58,15 @@ $ helm install airflow --namespace airflow --create-namespace -f airflow_deploym
 <br/>
 
 ```
+// Roles
+$ kubectl apply -f ./airflow_deployment/rolebinding_for_airflow.yaml
+```
+
+
+
+<br/>
+
+```
 $ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow
 ```
 
@@ -76,6 +77,13 @@ $ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow
 // admin / admin
 http://localhost:8080/
 ```
+
+
+<br/>
+
+
+**Spark**
+
 
 <br/>
 
@@ -124,13 +132,15 @@ EOF
 
 <br/>
 
-Загружаю файлы из spark_code:
+**Trino**
 
-spark_imdb_consolidated_table.py
-spark_imdb_tsv_parquet.py
-
-в s3a://spark-jobs/
-
+```
+$ kubectl get pods -n trino
+NAME                                 READY   STATUS    RESTARTS   AGE
+trino-coordinator-57cc8c466f-7wchh   1/1     Running   0          16m
+trino-worker-9b6b9f57-7p7gx          1/1     Running   0          16m
+trino-worker-9b6b9f57-bw8nh          1/1     Running   0          16m
+```
 
 <br/><br/>
 

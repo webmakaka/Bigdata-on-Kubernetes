@@ -60,7 +60,8 @@ def IMDB_batch():
     with TaskGroup("tsvs_to_parquet") as tsv_parquet:
         tsvs_to_parquet = SparkKubernetesOperator(
             task_id="tsvs_to_parquet",
-            namespace="airflow",
+            #namespace="airflow",
+            namespace="spark-operator",
             #application_file=open(f"{APP_FILES_PATH}/spark_imdb_tsv_parquet.yaml").read(),
             application_file="spark_imdb_tsv_parquet.yaml",
             kubernetes_conn_id="kubernetes_default",
@@ -68,7 +69,8 @@ def IMDB_batch():
         )
         tsvs_to_parquet_sensor = SparkKubernetesSensor(
             task_id="tsvs_to_parquet_sensor",
-            namespace="airflow",
+            #namespace="airflow",
+            namespace="spark-operator",
             application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet.tsvs_to_parquet')['metadata']['name'] }}",
             kubernetes_conn_id="kubernetes_default"
         )
@@ -103,6 +105,7 @@ def IMDB_batch():
     
     # Orchestration
     da = data_acquisition() 
-    da >> tsv_parquet >> transformations >> glue_crawler_consolidated
+    #da >> tsv_parquet >> transformations >> glue_crawler_consolidated
+    da >> tsv_parquet
 
 execution = IMDB_batch()

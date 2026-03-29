@@ -8,6 +8,7 @@ spec:
     - name: "ivy"
       emptyDir: {}
   sparkConf:
+    "spark.hadoop.fs.s3a.aws.credentials.provider": "org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider"
     "spark.hadoop.fs.s3a.endpoint": "http://minio.minio.svc.cluster.local:9000"
     "spark.kubernetes.file.upload.path": "s3a://spark-jobs/tmp/"
     "spark.hadoop.fs.s3a.path.style.access": "true"

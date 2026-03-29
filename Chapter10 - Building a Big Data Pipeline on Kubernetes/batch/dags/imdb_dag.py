@@ -2,7 +2,8 @@ from airflow.decorators import task, dag
 from airflow.utils.task_group import TaskGroup
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import SparkKubernetesOperator
 from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKubernetesSensor
-from airflow.providers.amazon.aws.operators.glue_crawler import GlueCrawlerOperator
+from airflow.providers.trino.operators.trino import TrinoOperator
+# from airflow.providers.amazon.aws.operators.glue_crawler import GlueCrawlerOperator
 from airflow.models import Variable
 from datetime import datetime
 import requests
@@ -78,23 +79,23 @@ def IMDB_batch():
     #     tsvs_to_parquet >> tsvs_to_parquet_sensor
     
 
-    with TaskGroup('Transformations') as transformations:
-        consolidated_table = SparkKubernetesOperator(
-            task_id='consolidated_table',
-            namespace="spark-operator",
-            #namespace="airflow",
-            application_file="spark_imdb_consolidated_table.yaml",
-            kubernetes_conn_id="kubernetes_default",
-            do_xcom_push=True
-        )
-        consolidated_table_sensor = SparkKubernetesSensor(
-            task_id='consolidated_table_sensor',
-            namespace="spark-operator",
-            #namespace="airflow",
-            application_name="{{ task_instance.xcom_pull(task_ids='Transformations.consolidated_table')['metadata']['name'] }}",
-            kubernetes_conn_id="kubernetes_default"
-        )
-        consolidated_table >> consolidated_table_sensor
+    # with TaskGroup('Transformations') as transformations:
+    #     consolidated_table = SparkKubernetesOperator(
+    #         task_id='consolidated_table',
+    #         namespace="spark-operator",
+    #         #namespace="airflow",
+    #         application_file="spark_imdb_consolidated_table.yaml",
+    #         kubernetes_conn_id="kubernetes_default",
+    #         do_xcom_push=True
+    #     )
+    #     consolidated_table_sensor = SparkKubernetesSensor(
+    #         task_id='consolidated_table_sensor',
+    #         namespace="spark-operator",
+    #         #namespace="airflow",
+    #         application_name="{{ task_instance.xcom_pull(task_ids='Transformations.consolidated_table')['metadata']['name'] }}",
+    #         kubernetes_conn_id="kubernetes_default"
+    #     )
+    #     consolidated_table >> consolidated_table_sensor
 
 
     # glue_crawler_consolidated = GlueCrawlerOperator(
@@ -105,11 +106,40 @@ def IMDB_batch():
     #     config = {'Name': 'imdb_consolidated_crawler'}
     # )
 
+
+    register_names_in_trino = TrinoOperator(
+    task_id='register_names_in_trino',
+    trino_conn_id='trino_default',
+    sql=[
+        # 1. Создаем схему, если её нет
+        """
+        CREATE SCHEMA IF NOT EXISTS minio.imdb 
+        WITH (location = 's3a://imdb-datasets/')
+        """,
+        # 2. Создаем таблицу (аналог работы Crawler по определению схемы)
+        """
+        CREATE TABLE IF NOT EXISTS minio.imdb.my_table (
+            nconst VARCHAR,
+            primaryName VARCHAR,
+            birthYear INTEGER,
+            deathYear INTEGER,
+            knownForTitles VARCHAR
+        ) 
+        WITH (
+            format = 'PARQUET',
+            external_location = 's3a://imdb-datasets/silver/imdb/consolidated/'
+        )
+        """
+    ],
+    handler=list
+)
+
     
     # Orchestration
     da = data_acquisition() 
     #da >> tsv_parquet >> transformations >> glue_crawler_consolidated
     # da >> tsv_parquet >> transformations
-    da >> transformations
+    # da >> transformations
+    da >> register_names_in_trino
     
 execution = IMDB_batch()

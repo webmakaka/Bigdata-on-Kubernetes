@@ -49,6 +49,20 @@ $ kubectl apply -f ./airflow_deployment/rolebinding_for_airflow.yaml
 $ helm install airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml ../../kubernetes-data-platform/helm-charts/airflow/
 ```
 
+<br/>
+
+```
+$ kubeclt port-forward airflow-webserver-54d4f4fb44-rfdpp -n airflow
+```
+
+<br/>
+
+```
+// OK!
+// admin / admin
+http://localhost:8080/
+```
+
 
 <br/><br/>
 

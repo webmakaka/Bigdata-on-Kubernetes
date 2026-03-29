@@ -1,4 +1,4 @@
-# Chapter 10 - Building a Big Data Pipeline on Kubernetes
+# Chapter 10 - Building a Big Data Pipeline on Kubernetes - Building a batch pipeline
 
 ### Checking the deployed tools
 

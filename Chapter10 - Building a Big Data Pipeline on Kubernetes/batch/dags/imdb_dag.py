@@ -8,10 +8,15 @@ from datetime import datetime
 import requests
 import boto3
 
-aws_access_key_id = Variable.get("aws_access_key_id")
-aws_secret_access_key = Variable.get("aws_secret_access_key")
+# aws_access_key_id=Variable.get("aws_access_key_id")
+# aws_secret_access_key=Variable.get("aws_secret_access_key")
 
-s3 = boto3.client('s3', 
+minio_url='http://minio.minio.svc.cluster.local:9000'
+aws_access_key_id='admin'
+aws_secret_access_key='password'
+
+s3 = boto3.client('s3',
+    endpoint_url=minio_url,
     aws_access_key_id=aws_access_key_id, 
     aws_secret_access_key=aws_secret_access_key
 )
@@ -44,7 +49,7 @@ def IMDB_batch():
             response = requests.get(url, stream=True)
             with open(f"/tmp/{title}", mode="wb") as file:
                 file.write(response.content)
-            s3.upload_file(f"/tmp/{title}", "bdok-539445819060", f"landing/imdb/{title}")
+            s3.upload_file(f"/tmp/{title}", "imdb-datasets", f"landing/imdb/{title}")
         
         return True
     

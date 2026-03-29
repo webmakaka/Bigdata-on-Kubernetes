@@ -122,6 +122,15 @@ roleRef:
 EOF
 ```
 
+<br/>
+
+Загружаю файлы из spark_code:
+
+spark_imdb_consolidated_table.py
+spark_imdb_tsv_parquet.py
+
+в s3a://spark-jobs/
+
 
 <br/><br/>
 

@@ -77,6 +77,15 @@ $ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow
 http://localhost:8080/
 ```
 
+<br/>
+
+```
+$ kubectl create secret generic aws-credentials \
+  --from-literal=aws_access_key_id='admin' \
+  --from-literal=aws_secret_access_key='password' \
+  -n spark-operator
+```
+
 
 <br/><br/>
 

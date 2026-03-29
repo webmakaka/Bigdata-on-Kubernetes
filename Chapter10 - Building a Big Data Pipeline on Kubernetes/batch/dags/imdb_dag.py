@@ -37,12 +37,15 @@ def IMDB_batch():
 
     @task
     def data_acquisition():
+        #urls_dict = {
+        #    "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz",
+        #    "basics.tsv.gz": "https://datasets.imdbws.com/title.basics.tsv.gz",
+        #    "crew.tsv.gz": "https://datasets.imdbws.com/title.crew.tsv.gz",
+        #    "principals.tsv.gz": "https://datasets.imdbws.com/title.principals.tsv.gz",
+        #    "ratings.tsv.gz": "https://datasets.imdbws.com/title.ratings.tsv.gz"
+        #}
         urls_dict = {
-            "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz",
-            "basics.tsv.gz": "https://datasets.imdbws.com/title.basics.tsv.gz",
-            "crew.tsv.gz": "https://datasets.imdbws.com/title.crew.tsv.gz",
-            "principals.tsv.gz": "https://datasets.imdbws.com/title.principals.tsv.gz",
-            "ratings.tsv.gz": "https://datasets.imdbws.com/title.ratings.tsv.gz"
+            "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz"
         }
 
         for title, url in urls_dict.items():

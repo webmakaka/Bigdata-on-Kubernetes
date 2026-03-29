@@ -37,44 +37,44 @@ default_args = {
 )
 def IMDB_batch():
 
-    # @task
-    # def data_acquisition():
-    #     #urls_dict = {
-    #     #    "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz",
-    #     #    "basics.tsv.gz": "https://datasets.imdbws.com/title.basics.tsv.gz",
-    #     #    "crew.tsv.gz": "https://datasets.imdbws.com/title.crew.tsv.gz",
-    #     #    "principals.tsv.gz": "https://datasets.imdbws.com/title.principals.tsv.gz",
-    #     #    "ratings.tsv.gz": "https://datasets.imdbws.com/title.ratings.tsv.gz"
-    #     #}
-    #     urls_dict = {
-    #         "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz"
-    #     }
+    @task
+    def data_acquisition():
+        #urls_dict = {
+        #    "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz",
+        #    "basics.tsv.gz": "https://datasets.imdbws.com/title.basics.tsv.gz",
+        #    "crew.tsv.gz": "https://datasets.imdbws.com/title.crew.tsv.gz",
+        #    "principals.tsv.gz": "https://datasets.imdbws.com/title.principals.tsv.gz",
+        #    "ratings.tsv.gz": "https://datasets.imdbws.com/title.ratings.tsv.gz"
+        #}
+        urls_dict = {
+            "names.tsv.gz": "https://datasets.imdbws.com/name.basics.tsv.gz"
+        }
 
-    #     for title, url in urls_dict.items():
-    #         response = requests.get(url, stream=True)
-    #         with open(f"/tmp/{title}", mode="wb") as file:
-    #             file.write(response.content)
-    #         s3.upload_file(f"/tmp/{title}", "imdb-datasets", f"landing/imdb/{title}")
+        for title, url in urls_dict.items():
+            response = requests.get(url, stream=True)
+            with open(f"/tmp/{title}", mode="wb") as file:
+                file.write(response.content)
+            s3.upload_file(f"/tmp/{title}", "imdb-datasets", f"landing/imdb/{title}")
         
-    #     return True
+        return True
     
 
-    # with TaskGroup("tsvs_to_parquet") as tsv_parquet:
+    with TaskGroup("tsvs_to_parquet") as tsv_parquet:
 
-    #     tsvs_to_parquet = SparkKubernetesOperator(
-    #         task_id="tsvs_to_parquet",
-    #         namespace="spark-operator",
-    #         application_file="spark_imdb_tsv_parquet.yaml",
-    #         kubernetes_conn_id="kubernetes_default",
-    #         do_xcom_push=True
-    #     )
-    #     tsvs_to_parquet_sensor = SparkKubernetesSensor(
-    #         task_id="tsvs_to_parquet_sensor",
-    #         namespace="spark-operator",
-    #         application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet.tsvs_to_parquet')['metadata']['name'] }}",
-    #         kubernetes_conn_id="kubernetes_default"
-    #     )
-    #     tsvs_to_parquet >> tsvs_to_parquet_sensor
+        tsvs_to_parquet = SparkKubernetesOperator(
+            task_id="tsvs_to_parquet",
+            namespace="spark-operator",
+            application_file="spark_imdb_tsv_parquet.yaml",
+            kubernetes_conn_id="kubernetes_default",
+            do_xcom_push=True
+        )
+        tsvs_to_parquet_sensor = SparkKubernetesSensor(
+            task_id="tsvs_to_parquet_sensor",
+            namespace="spark-operator",
+            application_name="{{ task_instance.xcom_pull(task_ids='tsvs_to_parquet.tsvs_to_parquet')['metadata']['name'] }}",
+            kubernetes_conn_id="kubernetes_default"
+        )
+        tsvs_to_parquet >> tsvs_to_parquet_sensor
     
 
     with TaskGroup('Transformations') as transformations:
@@ -106,9 +106,8 @@ def IMDB_batch():
 
     
     # Orchestration
-    #da = data_acquisition() 
+    da = data_acquisition() 
     #da >> tsv_parquet >> transformations >> glue_crawler_consolidated
-    # da >> tsv_parquet
-    transformations
-
+    da >> tsv_parquet >> transformations
+    
 execution = IMDB_batch()

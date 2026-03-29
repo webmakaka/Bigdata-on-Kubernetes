@@ -126,7 +126,6 @@ $ docker compose down
 
 ```
 $ cd Chapter07/connect/kafka-connect-custom-image
-$ cd kafka-connect-custom-image
 $ docker build -t connect-custom:1.0.0 .
 $ cd ../
 ```

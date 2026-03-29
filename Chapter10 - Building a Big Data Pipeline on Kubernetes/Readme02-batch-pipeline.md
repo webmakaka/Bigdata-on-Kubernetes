@@ -52,7 +52,17 @@ $ ^C
 
 <br/>
 
-**Elasticsearch**
+**Deploying Kafka Connect and Elasticsearch**
+
+<br/>
+
+```
+$ cd Bigdata-on-Kubernetes/Chapter08/kafka
+$ kubectl apply -f kafka_jbod.yaml -n kafka
+```
+
+
+<br/>
 
 
 ```
@@ -67,6 +77,11 @@ $ kubectl apply -f kibana.yaml -n kafka
 ```bash
 $ kubectl get secret elastic-es-elastic-user -n kafka -o go-template='{{.data.elastic | base64decode}}'
 ```
+
+<br/>
+
+We must configure certificates
+and keys that will allow Kafka Connect to correctly connect to Elastic.
 
 <br/>
 

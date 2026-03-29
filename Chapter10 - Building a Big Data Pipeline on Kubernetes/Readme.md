@@ -30,57 +30,6 @@ spark_imdb_tsv_parquet.py
 
 <br/>
 
-**AirFlow**
-
-```
-gitSync:
-***
-    repo: https://github.com/webmakaka/Bigdata-on-Kubernetes.git
-***
-    subPath: "Chapter10 - Building a Big Data Pipeline on Kubernetes/batch/dags"
-***
-```
-
-
-<br/>
-
-```bash
-// $ helm install airflow apache-airflow/airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml --version 1.13.1
-```
-
-<br/>
-
-```bash
-// $ helm uninstall airflow --namespace airflow
-$ helm install airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml ../../kubernetes-data-platform/helm-charts/airflow/
-```
-
-<br/>
-
-```
-// Roles
-$ kubectl apply -f ./airflow_deployment/rolebinding_for_airflow.yaml
-```
-
-
-
-<br/>
-
-```
-$ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow
-```
-
-<br/>
-
-```
-// OK!
-// admin / admin
-http://localhost:8080/
-```
-
-
-<br/>
-
 
 **Spark**
 
@@ -129,6 +78,58 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 EOF
 ```
+
+
+<br/>
+
+**AirFlow**
+
+```
+gitSync:
+***
+    repo: https://github.com/webmakaka/Bigdata-on-Kubernetes.git
+***
+    subPath: "Chapter10 - Building a Big Data Pipeline on Kubernetes/batch/dags"
+***
+```
+
+
+<br/>
+
+```bash
+// $ helm install airflow apache-airflow/airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml --version 1.13.1
+```
+
+<br/>
+
+```bash
+// $ helm uninstall airflow --namespace airflow
+$ helm install airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml ../../kubernetes-data-platform/helm-charts/airflow/
+```
+
+<br/>
+
+```
+// Roles
+$ kubectl apply -f ./airflow_deployment/rolebinding_for_airflow.yaml
+```
+
+
+
+<br/>
+
+```
+$ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow
+```
+
+<br/>
+
+```
+// OK!
+// admin / admin
+http://localhost:8080/
+```
+
 
 <br/>
 

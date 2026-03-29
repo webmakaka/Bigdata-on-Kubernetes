@@ -5,7 +5,7 @@
 
 По доке:
 
-https://github.com/webmakaka/data-platform-notes/tree/main/trino
+https://github.com/webmakaka/data-platform-notes/
 
 Выполняем:
 
@@ -14,8 +14,20 @@ https://github.com/webmakaka/data-platform-notes/tree/main/trino
 * Install Trino
 
 
+<br/>
+
 ```
-$ kubectl port-forward pod/trino-coordinator-57cc8c466f-hx98k 8080:8080
+$ kubectl get pods -n trino
+NAME                                 READY   STATUS    RESTARTS   AGE
+trino-coordinator-57cc8c466f-l4rkx   1/1     Running   0          13m
+trino-worker-9b6b9f57-fdpdq          1/1     Running   0          13m
+trino-worker-9b6b9f57-vg5p6          1/1     Running   0          13m
+```
+
+<br/>
+
+```
+$ kubectl port-forward pod/trino-coordinator-57cc8c466f-l4rkx 8080:8080 -n trino
 ```
 
 Dbeaver создать новое соединение с типом trino, скачать драйвера и подключиться.
@@ -32,6 +44,8 @@ Dbeaver создать новое соединение с типом trino, ск
 
 Download the dataset from https://github.com/neylsoncrepalde/titanic_data_with_semicolon and store the CSV file in an S3 bucket inside a folder named titanic.
 
+
+<br/>
 
 <img src="../img/chapter09-pic05.png">
 

@@ -139,13 +139,70 @@ http://localhost:8080/
 
 **Trino**
 
+<br/>
+
 ```
 $ kubectl get pods -n trino
 NAME                                 READY   STATUS    RESTARTS   AGE
-trino-coordinator-57cc8c466f-7wchh   1/1     Running   0          16m
-trino-worker-9b6b9f57-7p7gx          1/1     Running   0          16m
-trino-worker-9b6b9f57-bw8nh          1/1     Running   0          16m
+trino-coordinator-57cc8c466f-l4rkx   1/1     Running   0          13m
+trino-worker-9b6b9f57-fdpdq          1/1     Running   0          13m
+trino-worker-9b6b9f57-vg5p6          1/1     Running   0          13m
 ```
+
+<br/>
+
+**Подключаюсь dbeaver**
+
+
+<br/>
+
+```
+$ kubectl port-forward pod/trino-coordinator-57cc8c466f-l4rkx 8081:8080 -n trino
+```
+
+<br/>
+
+<img src="../img/chapter10.1-pic01.png">
+
+<br/>
+
+```sql
+SQL> CREATE SCHEMA IF NOT EXISTS minio.imdb
+WITH (location = 's3a://imdb-datasets/');
+```
+
+<br/>
+
+```sql
+-- DROP TABLE minio.imdb.my_table
+SQL> CREATE TABLE minio.imdb.my_table (
+  nconst VARCHAR,
+  primaryName VARCHAR,
+  birthYear INTEGER,
+  deathYear INTEGER,
+  knownForTitles VARCHAR
+)
+WITH (
+  format = 'PARQUET',
+  external_location = 's3a://imdb-datasets/silver/imdb/consolidated/'
+);
+```
+
+<br/>
+
+```sql
+SQL> SELECT * FROM minio.imdb.my_table LIMIT 10;
+```
+
+<br/>
+
+<img src="../img/chapter10.1-pic02.png">
+
+
+<br/>
+
+В AWS Glue Crawler — это «робот-разведчик». Его задача: зайти в S3, просканировать файлы, угадать их формат (Parquet, CSV), вытащить названия колонок и записать всё это в общую базу метаданных (Glue Data Catalog). Без этого другие сервисы (Athena, Redshift) просто не будут знать, что в S3 лежат таблицы.
+
 
 <br/><br/>
 

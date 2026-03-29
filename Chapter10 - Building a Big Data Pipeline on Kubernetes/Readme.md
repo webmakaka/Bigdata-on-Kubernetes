@@ -38,7 +38,22 @@ gitSync:
 $ kubectl apply -f ./airflow_deployment/rolebinding_for_airflow.yaml 
 ```
 
-```
+```bash
 // $ helm uninstall airflow --namespace airflow 
-$ helm install airflow apache-airflow/airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml --version 1.13.1
+// $ helm install airflow apache-airflow/airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml --version 1.13.1
 ```
+
+<br/>
+
+```bash
+$ helm install airflow --namespace airflow --create-namespace -f airflow_deployment/custom_values.yaml ../../kubernetes-data-platform/helm-charts/airflow/
+```
+
+
+<br/><br/>
+
+---
+
+<br/>
+
+<a href="https://k8s.ru/">Предложить инженеру работу / подработку на проекте с kubernetes, microservices, machine learning, big data, golang</a>

@@ -10,18 +10,18 @@ spec:
   http:
     service:
       spec:
-        type: LoadBalancer # default is ClusterIP
+        type: ClusterIP
   podTemplate:
     spec:
       containers:
-      - name: kibana
-        env:
-          - name: NODE_OPTIONS
-            value: "--max-old-space-size=2048"
-        resources:
-          requests:
-            memory: 1Gi
-            cpu: 0.5
-          limits:
-            memory: 2Gi
-            cpu: 2
+        - name: kibana
+          env:
+            - name: NODE_OPTIONS
+              value: '--max-old-space-size=2048'
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 0.5
+            limits:
+              memory: 2Gi
+              cpu: 2

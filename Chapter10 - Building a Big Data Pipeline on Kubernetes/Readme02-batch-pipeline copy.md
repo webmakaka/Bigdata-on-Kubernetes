@@ -10,15 +10,50 @@
 * Kafka
 * Elastic
 
+
 <br/>
 
-```python
-// to populate our database with some data
-$ python simulations.py --host <YOUR-DATABASE-ENDPOINT> -p <YOUR-
-PASSWORD>
+**postgres**
+
+```
+~$ kubectl port-forward pod/postgres 5432:5432
 ```
 
 <br/>
+
+```
+$ export PROJECT_NAME=big_data
+$ source ${PYENV_ROOT}/versions/${PROJECT_NAME}-env/bin/activate
+```
+
+
+
+
+
+<br/>
+
+```
+$ cd Chapter07/connect/
+$ pip install -r ./simulations/requirements.txt
+```
+
+<br/>
+
+```bash
+$ cd Chapter10
+$ cd streaming/
+
+// to populate our database with some data
+$ python simulations.py --host localhost -p postgres
+
+// Завершить спустя какое-то количество
+$ ^C
+```
+
+<br/>
+
+**Elasticsearch**
+
 
 ```
 $ cd streaming/elastic_deployment

@@ -130,6 +130,10 @@ $ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow
 http://localhost:8080/
 ```
 
+<br/>
+
+7 минут выполняется tsvs_to_parquet с максимально отключенными дополнительными действиями.
+
 
 <br/>
 

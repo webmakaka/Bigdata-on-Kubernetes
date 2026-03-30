@@ -15,9 +15,9 @@ spec:
     value.converter: org.apache.kafka.connect.json.JsonConverter
     key.converter.schemas.enable: true
     value.converter.schemas.enable: true
-    connection.url: "jdbc:postgresql://bdok-postgres.ctwliq6jzx6a.us-east-1.rds.amazonaws.com:5432/postgres"
+    connection.url: "jdbc:postgresql://postgres-postgresql.postgres.svc.cluster.local:5432/postgres"
     connection.user: postgres
-    connection.password: "Neylson1987"
+    connection.password: "postgres"
     connection.attempts: "2"
     query: "SELECT * FROM public.customers"
     mode: "timestamp"

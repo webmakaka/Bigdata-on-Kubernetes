@@ -52,7 +52,7 @@ $ ^C
 
 <br/>
 
-**Deploying Kafka Connect and Elasticsearch**
+### Deploying Kafka Connect and Elasticsearch
 
 https://artifacthub.io/packages/helm/strimzi/strimzi-kafka-operator
 

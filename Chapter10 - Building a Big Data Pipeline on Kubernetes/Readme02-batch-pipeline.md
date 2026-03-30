@@ -57,7 +57,7 @@ $ helm repo add strimzi https://strimzi.io/charts/
 // $ helm delete kafka -n kafka
 $ helm install kafka strimzi/strimzi-kafka-operator \
     --namespace kafka --create-namespace \
-    --version 0.44.0
+    --version 0.51.0
 ```
 
 <br/>

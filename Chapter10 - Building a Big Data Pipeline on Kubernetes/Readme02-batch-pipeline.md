@@ -16,7 +16,7 @@
 **postgres**
 
 ```
-~$ kubectl port-forward pod/postgres 5432:5432
+$ kubectl port-forward svc/postgres-postgresql -n postgres 5432:5432
 ```
 
 <br/>
@@ -25,10 +25,6 @@
 $ export PROJECT_NAME=big_data
 $ source ${PYENV_ROOT}/versions/${PROJECT_NAME}-env/bin/activate
 ```
-
-
-
-
 
 <br/>
 

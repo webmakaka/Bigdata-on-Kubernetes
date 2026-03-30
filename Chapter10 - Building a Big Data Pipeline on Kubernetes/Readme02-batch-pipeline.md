@@ -54,8 +54,9 @@ $ ^C
 
 ### Deploying Kafka Connect and Elasticsearch
 
-https://artifacthub.io/packages/helm/strimzi/strimzi-kafka-operator
+**kafka**
 
+https://artifacthub.io/packages/helm/strimzi/strimzi-kafka-operator
 
 ```
 $ helm repo add strimzi https://strimzi.io/charts/
@@ -77,9 +78,10 @@ $ cd Bigdata-on-Kubernetes/Chapter08/kafka
 $ kubectl apply -f kafka_jbod.yaml -n kafka
 ```
 
-
 <br/>
 
+
+**Elasticsearch**
 
 ```
 $ cd streaming/elastic_deployment
@@ -169,7 +171,6 @@ $ kafka-console-consumer.sh --bootstrap-server localhost:9092
 <br/>
 
 ### Real-time processing with Spark
-
 
 <br/>
 

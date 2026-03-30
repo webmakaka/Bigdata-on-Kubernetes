@@ -54,6 +54,22 @@ $ ^C
 
 **Deploying Kafka Connect and Elasticsearch**
 
+https://artifacthub.io/packages/helm/strimzi/strimzi-kafka-operator
+
+
+```
+$ helm repo add strimzi https://strimzi.io/charts/
+```
+
+<br/>
+
+```
+// $ helm delete kafka -n kafka
+$ helm install kafka strimzi/strimzi-kafka-operator \
+    --namespace kafka --create-namespace \
+    --version 0.44.0
+```
+
 <br/>
 
 ```

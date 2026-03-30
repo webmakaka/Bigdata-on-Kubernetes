@@ -19,10 +19,6 @@ spec:
         port: 9093
         type: internal
         tls: true
-      - name: external
-        port: 9094
-        type: loadbalancer
-        tls: false
     readinessProbe:
       initialDelaySeconds: 15
       timeoutSeconds: 5

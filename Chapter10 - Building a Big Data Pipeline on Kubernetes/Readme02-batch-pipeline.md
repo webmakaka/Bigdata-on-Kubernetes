@@ -124,8 +124,7 @@ $ keytool -importkeystore -srckeystore keystore.p12 -srcstoretype PKCS12 -srcsto
 <br/>
 
 ```
-// ??? -n elastic
-$ kubectl create secret generic es-keystore --from-file=keystore.jks -n elastic
+$ kubectl create secret generic es-keystore --from-file=keystore.jks -n kafka
 ```
 
 <br/>

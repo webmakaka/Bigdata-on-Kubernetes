@@ -112,6 +112,12 @@ $ kubectl get secret elastic-es-http-certs-internal -n elastic --output=go-templ
 
 <br/>
 
+```
+$ sudo apt update
+$ sudo apt install openjdk-21-jre-headless -y
+```
+
+<br/>
 
 ```bash
 $ openssl pkcs12 -export -in tls.crt -inkey tls.key -CAfile ca.crt -caname root -out keystore.p12 -password pass:BCoqZy82BhIhHv3C -name es-keystore
@@ -122,10 +128,57 @@ $ keytool -importkeystore -srckeystore keystore.p12 -srcstoretype PKCS12 -srcsto
 <br/>
 
 ```
-$ kubectl create secret generic es-keystore --from-file=keystore.jks -n kafka
+// ??? -n elastic
+$ kubectl create secret generic es-keystore --from-file=keystore.jks -n elastic
 ```
 
-connect_cluster.yaml
+<br/>
+
+```
+$ kubectl apply -f connect_cluster.yaml -n kafka
+```
+
+<br/>
+
+```
+$ kubectl apply -f connectors/jdbc_source.yaml -n kafka
+```
+
+
+
+
+
+=============================
+
+
+# Deploy Kafka JDBC Connector
+kubectl apply -f connectors/jdbc_source.yaml -n kafka
+
+# Check messages in the topic
+kubectl exec kafka-cluster-kafka-0 -n kafka -c kafka -it -- bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning --topic src-customers
+
+# Creating a service account for spark
+kubectl create serviceaccount spark -n kafka
+kubectl create clusterrolebinding spark-role-kafka --clusterrole=edit --serviceaccount=kafka:spark -n kafka
+
+# Deploy spark streaming job
+kubectl apply -f spark_streaming_job.yaml -n kafka
+kubectl describe sparkapplication spark-streaming-job -n kafka
+kubectl get pods -n kafka
+
+# Check messages in the transformed topic
+kubectl exec kafka-cluster-kafka-0 -n kafka -c kafka -it -- bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning --topic customers-transformed
+
+# Deploy elasticsearch sink connector
+kubectl apply -f connectors/es_sink.yaml -n kafka
+
+# Check the es sink connector
+kubectl describe kafkaconnector es-sink -n kafka
+
+============================
+
+
+
 
 <br/>
 

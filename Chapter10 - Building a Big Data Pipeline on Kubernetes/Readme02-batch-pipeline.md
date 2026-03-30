@@ -85,30 +85,29 @@ $ kubectl apply -f kafka_jbod.yaml -n kafka
 
 ```
 $ cd streaming/elastic_deployment
-$ kubectl apply -f elastic_cluster.yaml -n kafka
-$ kubectl apply -f kibana.yaml -n kafka
+$ kubectl apply -f elastic_cluster.yaml -n elastic
+$ kubectl apply -f kibana.yaml -n elastic
 ```
 
 <br/>
 
 
 ```bash
-$ kubectl get secret elastic-es-elastic-user -n kafka -o go-template='{{.data.elastic | base64decode}}'
+$ kubectl get secret elastic-es-elastic-user -n elastic -o go-template='{{.data.elastic | base64decode}}'
 ```
 
 <br/>
 
-We must configure certificates
-and keys that will allow Kafka Connect to correctly connect to Elastic.
+We must configure certificates and keys that will allow Kafka Connect to correctly connect to Elastic.
 
 <br/>
 
 ```bash
-$ kubectl get secret elastic-es-http-certs-public -n kafka --output=go-template='{{index .data "ca.crt" | base64decode}}' > ca.crt
+$ kubectl get secret elastic-es-http-certs-public -n elastic --output=go-template='{{index .data "ca.crt" | base64decode}}' > ca.crt
 
-$ kubectl get secret elastic-es-http-certs-public -n kafka --output=go-template='{{index .data "tls.crt" | base64decode}}' > tls.crt
+$ kubectl get secret elastic-es-http-certs-public -n elastic --output=go-template='{{index .data "tls.crt" | base64decode}}' > tls.crt
 
-$ kubectl get secret elastic-es-http-certs-internal -n kafka --output=go-template='{{index .data "tls.key" | base64decode}}' > tls.key
+$ kubectl get secret elastic-es-http-certs-internal -n elastic --output=go-template='{{index .data "tls.key" | base64decode}}' > tls.key
 ```
 
 <br/>

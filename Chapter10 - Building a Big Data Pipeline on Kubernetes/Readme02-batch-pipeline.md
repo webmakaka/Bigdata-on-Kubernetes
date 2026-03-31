@@ -372,6 +372,96 @@ $ kubectl create secret generic es-keystore --from-file=keystore.jks -n kafka```
 $ kubectl delete kctr es-sink -n kafka
 $ kubectl apply -f es_sink.yaml -n kafka
 ```
+
+<br/>
+
+```
+Message:               PUT /connectors/es-sink/config returned 400 (Bad Request): Connector configuration is invalid and contains the following 4 error(s):
+Could not connect to Elasticsearch. Error message: method [HEAD], host [https://elastic-es-http.elastic:9200], URI [/], status line [HTTP/1.1 401 Unauthorized]
+Could not authenticate the user. Check the 'connection.username' and 'connection.password'. Error message: method [HEAD], host [https://elastic-es-http.elastic:9200], URI [/], status line [HTTP/1.1 401 Unauthorized]
+Could not authenticate the user. Check the 'connection.username' and 'connection.password'. Error message: method [HEAD], host [https://elastic-es-http.elastic:9200], URI [/], status line [HTTP/1.1 401 Unauthorized]
+Could not connect to Elasticsearch. Check your SSL settings.Error message: method [HEAD], host [https://elastic-es-http.elastic:9200], URI [/], status line [HTTP/1.1 401 Unauthorized]
+```
+
+<br/>
+
+```
+$ kubectl get secret elastic-es-elastic-user -n elastic -o jsonpath="{.data.elastic}" | base64 --decode; echo
+X4Xb63q7352m9fu8LoFDAyM2
+```
+
+<br/>
+
+```
+$ vi es_sink.yaml
+
+***
+connection.password: X4Xb63q7352m9fu8LoFDAyM2
+***
+```
+
+<br/>
+
+```
+$ kubectl apply -f es_sink.yaml -n kafka
+```
+
+<br/>
+
+```
+$ kubectl describe kafkaconnector es-sink -n kafka
+Name:         es-sink
+Namespace:    kafka
+Labels:       strimzi.io/cluster=kafka-connect-cluster
+Annotations:  <none>
+API Version:  kafka.strimzi.io/v1beta2
+Kind:         KafkaConnector
+Metadata:
+  Creation Timestamp:  2026-03-31T02:34:47Z
+  Generation:          2
+  Resource Version:    20145
+  UID:                 bd434ee4-9865-42a2-bb8b-8aad32522d66
+Spec:
+  Class:  io.confluent.connect.elasticsearch.ElasticsearchSinkConnector
+  Config:
+    batch.size:                             1
+    connection.password:                    X4Xb63q7352m9fu8LoFDAyM2
+    connection.url:                         https://elastic-es-http.elastic:9200
+    connection.username:                    elastic
+    elastic.https.ssl.key.password:         OfwxynZ8KATfZSZe
+    elastic.https.ssl.keystore.location:    /opt/kafka/external-configuration/es-keystore-volume/keystore.jks
+    elastic.https.ssl.keystore.password:    OfwxynZ8KATfZSZe
+    elastic.https.ssl.keystore.type:        JKS
+    elastic.https.ssl.truststore.location:  /opt/kafka/external-configuration/es-keystore-volume/keystore.jks
+    elastic.https.ssl.truststore.password:  OfwxynZ8KATfZSZe
+    elastic.https.ssl.truststore.type:      JKS
+    elastic.security.protocol:              SSL
+    key.ignore:                             true
+    Topics:                                 customers-transformed
+  Tasks Max:                                1
+Status:
+  Conditions:
+    Last Transition Time:  2026-03-31T02:41:19.540845996Z
+    Status:                True
+    Type:                  Ready
+  Connector Status:
+    Connector:
+      State:      RUNNING
+      worker_id:  kafka-connect-cluster-connect-0.kafka-connect-cluster-connect.kafka.svc:8083
+    Name:         es-sink
+    Tasks:
+      Id:               0
+      State:            RUNNING
+      worker_id:        kafka-connect-cluster-connect-0.kafka-connect-cluster-connect.kafka.svc:8083
+    Type:               sink
+  Observed Generation:  2
+  Tasks Max:            1
+  Topics:
+    customers-transformed
+Events:  <none>
+
+```
+
 <br/><br/>
 
 ---

@@ -21,7 +21,7 @@ This book covers the following exciting features:
 
 ## Chapters:
 
-Part 1: Docker and Kubernetes
+**Part 1: Docker and Kubernetes**
 
 <ol>
   <li>✅ Getting Started with Containers</li>
@@ -29,7 +29,7 @@ Part 1: Docker and Kubernetes
   <li>✅ Getting Hands-On with Kubernetes</li>
 </ol>
 
-Part 2: Big Data Stack
+**Part 2: Big Data Stack**
 
 <ol start="4">
   <li>📖 The Modern Data Stack</li>
@@ -38,7 +38,7 @@ Part 2: Big Data Stack
   <li>✅ Apache Kafka for Real-Time Events and Data Ingestion</li>
 </ol>
 
-Part 3: Connecting It All Together
+**Part 3: Connecting It All Together**
 
 <ol start="8">
   <li>✅ Deploying the Big Data Stack on Kubernetes</li>

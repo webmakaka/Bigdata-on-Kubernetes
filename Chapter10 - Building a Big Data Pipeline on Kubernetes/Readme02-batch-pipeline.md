@@ -124,11 +124,13 @@ $ kubectl create secret generic es-keystore --from-file=keystore.jks -n kafka
 
 <br/>
 
-!!!!!!!!!!!!!!!!!
+Этот манифест разворачивает Kafka Connect — специальный сервис-прослойку, который умеет автоматически перекачивать данные между Kafka и внешними системами (S3, Postgres, Elasticsearch).
 
 ```
 $ kubectl apply -f connect_cluster.yaml -n kafka
 ```
+
+!!!!!!!!!!!!!!!!!
 
 <br/>
 

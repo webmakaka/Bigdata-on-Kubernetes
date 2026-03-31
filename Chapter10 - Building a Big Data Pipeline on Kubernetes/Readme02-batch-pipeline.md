@@ -187,6 +187,53 @@ $ kubectl exec kafka-cluster-kafka-0 -n kafka -c kafka -it -- bin/kafka-console-
 
 **Spark**
 
+https://github.com/webmakaka/kubernetes-data-platform/tree/main/05.1.spark
+
+<br/>
+
+```bash
+$ kubectl create secret generic aws-credentials \
+  --from-literal=aws_access_key_id='admin' \
+  --from-literal=aws_secret_access_key='password' \
+  -n spark-operator
+```
+
+<br/>
+
+```yaml
+$ cat << 'EOF' | kubectl apply -f -
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: spark
+  namespace: spark-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: spark-role
+  namespace: spark-operator
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "configmaps", "secrets"]
+    verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: spark-role-binding
+  namespace: spark-operator
+subjects:
+  - kind: ServiceAccount
+    name: spark
+    namespace: spark-operator
+roleRef:
+  kind: Role
+  name: spark-role
+  apiGroup: rbac.authorization.k8s.io
+EOF
+```
+
 !!!!!!!!!!!!!!!!!!!!!!!!
 
 <br/>

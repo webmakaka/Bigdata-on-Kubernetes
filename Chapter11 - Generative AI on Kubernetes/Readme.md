@@ -40,3 +40,49 @@ $ kubectl get svc -n genai
 <br/>
 
 ### Building RAG with Knowledge Bases for Amazon Bedrock
+
+
+<br/>
+
+<img src="../img/chapter11-pic2.png">
+
+
+<br/>
+
+```
+$ pip install "beautifulsoup4==4.12.2"
+```
+
+
+<br/>
+
+```
+$ python get_competency_data.py
+```
+
+<br/>
+
+```
+$ kubectl create configmap kb-config --from-literal=kb_id=<YOUR_KB_ID> -n genai
+```
+
+<br/>
+
+```
+$ kubectl apply -f deploy_chat_with_claude.yaml -n genai
+```
+
+<br/>
+
+```
+$ kubectl get svc -n genai
+```
+
+<br/>
+
+### Building action models with agents
+
+<br/>
+
+<img src="../img/chapter11-pic3.png">
+

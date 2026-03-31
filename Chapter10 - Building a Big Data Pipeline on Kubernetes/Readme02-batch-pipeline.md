@@ -366,13 +366,12 @@ lrwxrwxrwx 1 root root 19 Mar 31 02:19 keystore.jks -> ..data/keystore.jks
 <br/>
 
 ```
-$ kubectl describe kafkaconnector es-sink -n kafka
+$ kubectl delete secret es-keystore -n kafka
+$ kubectl create secret generic es-keystore --from-file=keystore.jks -n kafka```
 
-Message:               PUT /connectors/es-sink/config returned 400 (Bad Request): Connector configuration is invalid and contains the following 1 error(s):
-Failed to create client to verify connection. Failed to load SSL keystore /opt/kafka/external-configuration/es-keystore-volume/keystore.jks of type JKS
-You can also find the above list of errors at the endpoint `/connector-plugins/{connectorType}/config/validate`
+$ kubectl delete kctr es-sink -n kafka
+$ kubectl apply -f es_sink.yaml -n kafka
 ```
-
 <br/><br/>
 
 ---

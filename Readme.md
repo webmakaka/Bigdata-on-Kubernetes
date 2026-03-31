@@ -17,11 +17,9 @@ This book covers the following exciting features:
 * Build and orchestrate a complete big data pipeline using open-source tools
 * Deploy Generative AI applications on a Kubernetes-based architecture
 
-
 <br/>
 
 ## Chapters:
-
 
 Part 1: Docker and Kubernetes
 
@@ -29,8 +27,7 @@ Part 1: Docker and Kubernetes
   <li>✅ Getting Started with Containers</li>
   <li>📖 Kubernetes Architecture</li>
   <li>✅ Getting Hands-On with Kubernetes</li>
-
- </ol>
+</ol>
 
 Part 2: Big Data Stack
 

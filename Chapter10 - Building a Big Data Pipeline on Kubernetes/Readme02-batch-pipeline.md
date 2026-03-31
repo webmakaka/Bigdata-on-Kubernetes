@@ -347,6 +347,25 @@ $ kubectl edit kafkaconnect kafka-connect-cluster -n kafka
 <br/>
 
 ```
+# Находим имя пода
+$ POD_NAME=$(kubectl get pods -n kafka -l strimzi.io/kind=KafkaConnect -o name)
+
+# Проверяем содержимое папки
+$ kubectl exec -it $POD_NAME -n kafka -- ls -lR /opt/kafka/external-configuration/es-keystore-volume/
+```
+
+<br/>
+
+```
+/opt/kafka/external-configuration/es-keystore-volume/:
+total 0
+lrwxrwxrwx 1 root root 19 Mar 31 02:19 keystore.jks -> ..data/keystore.jks
+```
+
+
+<br/>
+
+```
 $ kubectl describe kafkaconnector es-sink -n kafka
 
 Message:               PUT /connectors/es-sink/config returned 400 (Bad Request): Connector configuration is invalid and contains the following 1 error(s):

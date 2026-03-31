@@ -130,6 +130,26 @@ $ kubectl create secret generic es-keystore --from-file=keystore.jks -n kafka
 $ kubectl apply -f connect_cluster.yaml -n kafka
 ```
 
+<br/>
+
+```
+$ kubectl create secret generic aws-credentials \
+  --from-literal=aws_access_key_id='admin' \
+  --from-literal=aws_secret_access_key='password' \
+  -n kafka
+```
+
+<br/>
+
+```
+$ kubectl get pods -n kafka
+NAME                                        READY   STATUS    RESTARTS   AGE
+kafka-cluster-kafka-0                       1/1     Running   0          15m
+kafka-cluster-zookeeper-0                   1/1     Running   0          16m
+kafka-connect-cluster-connect-0             1/1     Running   0          80s
+strimzi-cluster-operator-6f9fbb4c75-tg7pr   1/1     Running   0          23m
+```
+
 !!!!!!!!!!!!!!!!!
 
 <br/>
@@ -195,12 +215,7 @@ $ kubectl describe kafkaconnector es-sink -n kafka
 $ kubectl get secrets -n kafka
 ```
 
-<br/>
 
-```bash
-$ kubectl create secret generic aws-credentials --from-literal=aws_access_key_id=<YOUR_ACCESS_KEY_ID> --from-literal=aws_secret_access_key="<YOUR_SECRET_ACCESS_KEY>" -n
-kafka
-```
 
 <br/>
 

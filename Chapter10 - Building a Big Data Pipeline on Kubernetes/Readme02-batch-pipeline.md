@@ -271,8 +271,23 @@ strimzi-cluster-operator-6f9fbb4c75-tg7pr   1/1     Running             0       
 
 ```
 // Check messages in the transformed topic
+// Ok!
 $ kubectl exec kafka-cluster-kafka-0 -n kafka -c kafka -it -- bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning --topic customers-transformed
 ```
+
+<br/>
+
+```
+$ kubectl get pods -n kafka
+NAME                                        READY   STATUS    RESTARTS   AGE
+consumefromkafka-22facd9d418c3ab9-exec-1    1/1     Running   0          3m38s
+kafka-cluster-kafka-0                       1/1     Running   0          93m
+kafka-cluster-zookeeper-0                   1/1     Running   0          93m
+kafka-connect-cluster-connect-0             1/1     Running   0          78m
+spark-streaming-job-driver                  1/1     Running   0          3m57s
+strimzi-cluster-operator-6f9fbb4c75-tg7pr   1/1     Running   0          101m
+```
+
 
 <br/>
 

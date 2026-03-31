@@ -2,6 +2,14 @@
 
 Нужен kubernetes v1.31.0 или разбираться с kafka, старая версия которого не запускается, а новая уже без zookeeper.
 
+
+<br/>
+
+<img src="../img/chapter10.2-pipeline-pic.png">
+
+<br/>
+
+
 ### Checking the deployed tools
 
 <br/>

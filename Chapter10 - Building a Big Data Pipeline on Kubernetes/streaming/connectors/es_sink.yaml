@@ -12,7 +12,7 @@ spec:
   tasksMax: 1
   config:
     topics: "customers-transformed"
-    connection.url: "https://elastic-es-http.kafka:9200"
+    connection.url: "https://elastic-es-http.elastic:9200"
     connection.username: "elastic"
     connection.password: "w6MR9V0SNLD79b56arB9Q6b6"
     batch.size: 1

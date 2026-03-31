@@ -185,7 +185,9 @@ $ kubectl exec kafka-cluster-kafka-0 -n kafka -c kafka -it -- bin/kafka-console-
 
 <br/>
 
-**Spark**
+### Real-time processing with Spark
+
+<br/>
 
 https://github.com/webmakaka/kubernetes-data-platform/tree/main/05.1.spark
 
@@ -286,39 +288,6 @@ $ kubectl apply -f connectors/es_sink.yaml -n kafka
 ```
 // Check the es sink connector
 $ kubectl describe kafkaconnector es-sink -n kafka
-```
-
-
-<br/>
-
-### Real-time processing with Spark
-
-
-<br/>
-
-```bash
-$ kubectl get secrets -n kafka
-```
-
-
-
-<br/>
-
-```bash
-$ kubectl apply -f spark_streaming_job.yaml -n kafka
-```
-
-<br/>
-
-```bash
-$ kubectl describe sparkapplication spark-streaming-job -n kafka
-$ kubectl get pods -n kafka
-```
-
-<br/>
-
-```bash
-$ kubectl exec kafka-cluster-kafka-0 -n kafka -c kafka -it -- bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning --topic customers-transformed
 ```
 
 <br/>

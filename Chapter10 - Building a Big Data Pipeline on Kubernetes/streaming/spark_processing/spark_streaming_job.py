@@ -71,7 +71,7 @@ if __name__ == "__main__":
         .format("kafka")
         .option("kafka.bootstrap.servers", "kafka-cluster-kafka-bootstrap:9092")
         .option("topic", "customers-transformed")
-        .option("checkpointLocation", "s3a://bdok-<ACCOUNT-NUMBER>/spark-checkpoint/customers-processing/")
+        .option("checkpointLocation", "s3a://spark-checkpoint/customers-processing/")
         .start()
         .awaitTermination()
     )

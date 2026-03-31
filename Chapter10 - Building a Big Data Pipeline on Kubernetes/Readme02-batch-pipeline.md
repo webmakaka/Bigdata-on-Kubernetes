@@ -481,11 +481,32 @@ Menu -> Stack Management -> Data Views -> Create Data View
 https://localhost:5601/app/management/kibana/dataViews
 ```
 
+
+<br/>
+
+<img src="../img/chapter10.2-pic01.png">
+
+
+<br/>
+
+<img src="../img/chapter10.2-pic02.png">
+
+
 <br/>
 
 ```
 Discover
 ```
+
+
+<br/>
+
+<img src="../img/chapter10.2-pic03.png">
+
+
+<br/>
+
+**Happy End!**
 
 <br/><br/>
 

@@ -46,7 +46,7 @@ Part 3: Connecting It All Together
 <ol start="8">
   <li>✅ Deploying the Big Data Stack on Kubernetes</li>
   <li>✅ Data Consumption Layer</li>
-  <li>❌ Building a Big Data Pipeline on Kubernetes</li>
+  <li>✅ Building a Big Data Pipeline on Kubernetes</li>
   <li>Generative AI on Kubernetes</li>
   <li>📖 Where to Go from Here</li>
 </ol>

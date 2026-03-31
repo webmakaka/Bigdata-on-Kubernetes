@@ -293,8 +293,7 @@ strimzi-cluster-operator-6f9fbb4c75-tg7pr   1/1     Running   0          101m
 
 ### Deploying the Elasticsearch sink connector
 
-!!!!!!!!!!!!!!!!!!!!!!!!
-
+<br/>
 
 ```
 // Deploy elasticsearch sink connector
@@ -304,10 +303,20 @@ $ kubectl apply -f connectors/es_sink.yaml -n kafka
 <br/>
 
 ```
-// Check the es sink connector
-$ kubectl describe kafkaconnector es-sink -n kafka
+$ kubectl get kctr es-sink -n kafka -o yaml
 ```
 
+<br/>
+
+```
+// Check the es sink connector
+$ kubectl describe kafkaconnector es-sink -n kafka
+
+Message:               PUT /connectors/es-sink/config returned 400 (Bad Request): Connector configuration is invalid and contains the following 1 error(s):
+Failed to create client to verify connection. Failed to load SSL keystore /opt/kafka/external-configuration/es-keystore-volume/keystore.jks of type JKS
+You can also find the above list of errors at the endpoint `/connector-plugins/{connectorType}/config/validate`
+
+```
 
 
 

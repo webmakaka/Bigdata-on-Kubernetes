@@ -124,6 +124,8 @@ $ kubectl create secret generic es-keystore --from-file=keystore.jks -n kafka
 
 <br/>
 
+!!!!!!!!!!!!!!!!!
+
 ```
 $ kubectl apply -f connect_cluster.yaml -n kafka
 ```

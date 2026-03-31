@@ -124,6 +124,8 @@ $ kubectl create secret generic es-keystore --from-file=keystore.jks -n kafka
 
 <br/>
 
+**Kafka**
+
 Этот манифест разворачивает Kafka Connect — специальный сервис-прослойку, который умеет автоматически перекачивать данные между Kafka и внешними системами (S3, Postgres, Elasticsearch).
 
 ```
@@ -154,7 +156,6 @@ strimzi-cluster-operator-6f9fbb4c75-tg7pr   1/1     Running   0          23m
 
 Следующий манифест создает сам Connector — конкретную задачу для Kafka Connect. Он будет «выкачивать» данные из таблицы public.customers в PostgreSQL и записывать их в Kafka.
 
-
 <br/>
 
 ```
@@ -163,13 +164,30 @@ $ kubectl apply -f connectors/jdbc_source.yaml -n kafka
 
 <br/>
 
+```
+$ kubectl get kctr jdbc-source -n kafka -o yaml
+```
 
-!!!!!!!!!!!!!!!!!
+<br/>
+
+```
+// OK!
+$ kubectl exec -it postgres-postgresql-0 -n postgres -- psql -U postgres -d postgres -c "UPDATE customers SET dt_update = NOW();"
+```
+
+<br/>
 
 ```
 // Check messages in the topic
+// Ok!
 $ kubectl exec kafka-cluster-kafka-0 -n kafka -c kafka -it -- bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning --topic src-customers
 ```
+
+<br/>
+
+**Spark**
+
+!!!!!!!!!!!!!!!!!!!!!!!!
 
 <br/>
 

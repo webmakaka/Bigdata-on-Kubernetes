@@ -462,6 +462,31 @@ Events:  <none>
 
 ```
 
+<br/>
+
+```
+// kibana
+
+Menu -> Dev Tools
+https://localhost:5601/app/dev_tools#/console
+
+GET _cat/indices
+```
+
+<br/>
+
+```
+Menu -> Stack Management -> Data Views -> Create Data View
+
+https://localhost:5601/app/management/kibana/dataViews
+```
+
+<br/>
+
+```
+Discover
+```
+
 <br/><br/>
 
 ---

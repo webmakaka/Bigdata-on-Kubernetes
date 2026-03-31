@@ -273,7 +273,7 @@ $ kubectl exec kafka-cluster-kafka-0 -n kafka -c kafka -it -- bin/kafka-console-
 
 <br/>
 
-**Elasticsearch**
+### Deploying the Elasticsearch sink connector
 
 !!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -290,28 +290,8 @@ $ kubectl apply -f connectors/es_sink.yaml -n kafka
 $ kubectl describe kafkaconnector es-sink -n kafka
 ```
 
-<br/>
-
-### Deploying the Elasticsearch sink connector
 
 
-<br/>
-
-```
-$ kubectl apply -f connectors/es_sink.yaml -n kafka
-```
-
-<br/>
-
-```
-$ kubectl describe kafkaconnector es-sink -n kafka
-```
-
-<br/>
-
-```
-$ kubectl get svc -n kafka
-```
 
 <br/><br/>
 

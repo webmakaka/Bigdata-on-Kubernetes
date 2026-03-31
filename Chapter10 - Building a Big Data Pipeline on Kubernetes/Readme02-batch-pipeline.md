@@ -152,8 +152,6 @@ strimzi-cluster-operator-6f9fbb4c75-tg7pr   1/1     Running   0          23m
 
 <br/>
 
-!!!!!!!!!!!!!!!!!
-
 Следующий манифест создает сам Connector — конкретную задачу для Kafka Connect. Он будет «выкачивать» данные из таблицы public.customers в PostgreSQL и записывать их в Kafka.
 
 
@@ -164,6 +162,9 @@ $ kubectl apply -f connectors/jdbc_source.yaml -n kafka
 ```
 
 <br/>
+
+
+!!!!!!!!!!!!!!!!!
 
 ```
 // Check messages in the topic

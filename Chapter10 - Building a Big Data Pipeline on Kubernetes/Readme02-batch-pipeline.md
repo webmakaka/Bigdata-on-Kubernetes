@@ -75,9 +75,9 @@ $ kubectl apply -f kafka_jbod.yaml -n kafka
 **Elasticsearch**
 
 ```
-$ cd streaming/elastic_deployment
-$ kubectl apply -f elastic_cluster.yaml -n elastic
-$ kubectl apply -f kibana.yaml -n elastic
+$ cd streaming/
+$ kubectl apply -f elastic_deployment/elastic_cluster.yaml -n elastic
+$ kubectl apply -f elastic_deployment/kibana.yaml -n elastic
 ```
 
 <br/>

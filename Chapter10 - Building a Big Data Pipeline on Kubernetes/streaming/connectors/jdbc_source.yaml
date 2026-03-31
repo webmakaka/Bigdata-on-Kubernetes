@@ -19,8 +19,8 @@ spec:
     connection.user: postgres
     connection.password: "postgres"
     connection.attempts: "2"
-    query: "SELECT * FROM public.customers"
+    query: "SELECT * FROM customers"
     mode: "timestamp"
     timestamp.column.name: "dt_update"
     topic.prefix: "src-customers"
-    valincrate.non.null: "false"
+    validate.non.null: "false"

@@ -315,10 +315,44 @@ $ kubectl describe kafkaconnector es-sink -n kafka
 Message:               PUT /connectors/es-sink/config returned 400 (Bad Request): Connector configuration is invalid and contains the following 1 error(s):
 Failed to create client to verify connection. Failed to load SSL keystore /opt/kafka/external-configuration/es-keystore-volume/keystore.jks of type JKS
 You can also find the above list of errors at the endpoint `/connector-plugins/{connectorType}/config/validate`
-
 ```
 
+<br/>
 
+```
+$ kubectl edit kafkaconnect kafka-connect-cluster -n kafka
+```
+
+<br/>
+
+```
+  externalConfiguration:
+    env:
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          key: aws_access_key_id
+          name: aws-credentials
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          key: aws_secret_access_key
+          name: aws-credentials
+    volumes:
+      - name: es-keystore-volume     
+        secret:
+          secretName: es-keystore
+```
+
+<br/>
+
+```
+$ kubectl describe kafkaconnector es-sink -n kafka
+
+Message:               PUT /connectors/es-sink/config returned 400 (Bad Request): Connector configuration is invalid and contains the following 1 error(s):
+Failed to create client to verify connection. Failed to load SSL keystore /opt/kafka/external-configuration/es-keystore-volume/keystore.jks of type JKS
+You can also find the above list of errors at the endpoint `/connector-plugins/{connectorType}/config/validate`
+```
 
 <br/><br/>
 

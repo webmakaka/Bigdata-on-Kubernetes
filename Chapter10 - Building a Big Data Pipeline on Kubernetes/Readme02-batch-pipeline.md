@@ -234,8 +234,6 @@ roleRef:
 EOF
 ```
 
-!!!!!!!!!!!!!!!!!!!!!!!!
-
 <br/>
 
 ```
@@ -250,7 +248,18 @@ $ kubectl create clusterrolebinding spark-role-kafka --clusterrole=edit --servic
 // Deploy spark streaming job
 $ kubectl apply -f spark_streaming_job.yaml -n kafka
 $ kubectl describe sparkapplication spark-streaming-job -n kafka
+```
+
+<br/>
+
+```
 $ kubectl get pods -n kafka
+NAME                                        READY   STATUS              RESTARTS   AGE
+kafka-cluster-kafka-0                       1/1     Running             0          47m
+kafka-cluster-zookeeper-0                   1/1     Running             0          48m
+kafka-connect-cluster-connect-0             1/1     Running             0          33m
+spark-streaming-job-driver                  0/1     ContainerCreating   0          12s
+strimzi-cluster-operator-6f9fbb4c75-tg7pr   1/1     Running             0          55m
 ```
 
 <br/>
@@ -261,6 +270,11 @@ $ kubectl exec kafka-cluster-kafka-0 -n kafka -c kafka -it -- bin/kafka-console-
 ```
 
 <br/>
+
+**Elasticsearch**
+
+!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 ```
 // Deploy elasticsearch sink connector

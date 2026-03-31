@@ -12,6 +12,9 @@
 * Kafka
 * Elastic
 
+<br/>
+
+Minio -> создаем bucket "spark-jobs"
 
 <br/>
 

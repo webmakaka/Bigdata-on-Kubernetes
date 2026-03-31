@@ -14,7 +14,7 @@
 
 <br/>
 
-Minio -> создаем bucket "spark-jobs"
+Minio -> создаем bucket "spark-jobs" и загружаем в него файл streaming/spark_processing/spark_streaming_job.py
 
 <br/>
 

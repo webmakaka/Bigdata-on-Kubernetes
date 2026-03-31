@@ -12,6 +12,15 @@ spec:
     spark.kubernetes.allocation.batch.size: "10"
   hadoopConf:
     fs.s3a.impl: org.apache.hadoop.fs.s3a.S3AFileSystem
+    # Обязательно: адрес вашего MinIO (тот, что выдал MetalLB)
+    fs.s3a.endpoint: "http://192.168.49.20:9000"
+    # Обязательно: для работы с MinIO через IP
+    fs.s3a.path.style.access: "true"
+    # Отключаем SSL, так как в локальном MinIO его обычно нет
+    fs.s3a.connection.ssl.enabled: "false"
+    # Подтягиваем ключи из вашего секрета автоматически для Hadoop
+    fs.s3a.access.key: "admin"
+    fs.s3a.secret.key: "password123"
   type: Python
   pythonVersion: "3"
   mode: cluster

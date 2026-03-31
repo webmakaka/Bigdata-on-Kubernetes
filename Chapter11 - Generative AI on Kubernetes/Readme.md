@@ -1,7 +1,42 @@
 # Chapter 11 - Generative AI on Kubernetes
 
-* Building a generative AI application on Kubernetes with Streamlit
+<br/>
+
+### Building a generative AI application on Kubernetes with Streamlit
 
 <br/>
 
 <img src="../img/chapter11-pic1.png">
+
+
+<br/>
+
+```
+$ pip install -r requirements.txt
+$ streamlit run main.py
+```
+
+<br/>
+
+```
+$ docker build --platform linux/amd64 -t <YOUR_USERNAME>/chat-with-claude:v1 .
+$ docker push <YOUR_USERNAME>/chat-with-claude:v1
+```
+
+<br/>
+
+```
+$ kubectl create namespace genai
+$ kubectl create secret generic aws-credentials --from-literal=aws_access_key_id=<YOUR_ACCESS_KEY_ID> --from-literal=aws_secret_access_key="<YOUR_SECRET_ACCESS_KEY>" -n genai
+$ kubectl apply -f deploy_chat_with_claude.yaml -n genai
+```
+
+<br/>
+
+```
+$ kubectl get svc -n genai
+```
+
+<br/>
+
+### Building RAG with Knowledge Bases for Amazon Bedrock

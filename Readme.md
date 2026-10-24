@@ -4,6 +4,9 @@
 
 **A practical guide to building efficient and scalable data solutions**
 
+**Original src:**  
+https://github.com/PacktPublishing/Bigdata-on-Kubernetes
+
 ## What is this book about?
 
 With step-by-step instructions and examples, this book will teach you the skills needed to build and deploy complex data pipelines on Kubernetes, resulting in efficient and scalable big data solutions.
